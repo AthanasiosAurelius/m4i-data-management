@@ -47,7 +47,7 @@ def _listener(consumer: Consumer, timeout: int = -1) -> MessageType:
 
 def read_messages_from_topic(*topic_name: str, timeout: int = -1, consumer: Consumer = None) -> Generator[MessageType, None, None]:
     """
-    Returns a generator that continuously reads messages from the given topic(s) until the topic is depleted, or until a timeout occurs.
+    Returns a generator that continuously reads messages from the specified topic(s) until the topic is depleted, or until a timeout occurs.
 
     You can specify the topic(s) from which to read the messages by providing a (set of) `topic_name`.
 
