@@ -14,6 +14,7 @@ mypy:
     image: python:3.6
     script:
         - pip install mypy --quiet
+        - pip install -e .
         - mypy m4i_data_management
     artifacts:
         paths: [mypy-report.json]
