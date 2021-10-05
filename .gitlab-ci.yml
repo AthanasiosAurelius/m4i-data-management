@@ -15,3 +15,5 @@ mypy:
     script:
         - pip install mypy --quiet
         - mypy m4i_data_management
+    artifacts:
+        paths: [mypy-report.json]
