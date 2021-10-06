@@ -15,3 +15,11 @@ code_quality_html:
     REPORT_FORMAT: html
   artifacts:
     paths: [gl-code-quality-report.html]
+
+mypy:
+    stage: test
+    image: python:3.6
+    script:
+        - pip install mypy --quiet
+        - pip install -e . --quiet
+        - mypy m4i_data_management
