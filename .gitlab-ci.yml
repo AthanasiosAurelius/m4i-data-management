@@ -22,4 +22,4 @@ mypy:
     script:
         - pip install mypy --quiet
         - pip install -e . --quiet
-        - mypy m4i_data_management
+        - mypy .
