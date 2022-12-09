@@ -18,11 +18,11 @@ def length(data: DataFrame, column_name: str, required_length: int) -> Series:
             return 1
         # END IF
 
-        is_equal_length = (
-            required_length == len(str(value))
+        has_required_length = (
+            required_length <= len(value)
         )
 
-        return 1 if is_equal_length else 0
+        return 1 if has_required_length else 0
     # END check
 
     return data[column_name].apply(check)
