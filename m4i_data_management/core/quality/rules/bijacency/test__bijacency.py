@@ -3,7 +3,7 @@ from pandas import DataFrame
 
 from .bijacency import bijacency
 
-
+#in our test we are providing two dummy datasets and comparing the id and name
 def test__bijacency_with_bijacent_columns():
 
     data = DataFrame([
