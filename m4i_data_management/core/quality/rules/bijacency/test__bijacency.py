@@ -3,7 +3,7 @@ from pandas import DataFrame
 
 from .bijacency import bijacency
 
-#in our test we are providing two dummy datasets and comparing the id and name
+#In our test we are providing two dummy datasets and comparing the id and name
 def test__bijacency_with_bijacent_columns():
 
     data = DataFrame([
@@ -26,7 +26,7 @@ def test__bijacency_with_bijacent_columns():
     assert result.sum() == 2
 # END test__bijacency_with_bijacent_columns
 
-
+#We provide a two dummmy datasets and compare id and name
 def test__bijacency_with_non_bijacent_columns():
 
     data = DataFrame([
