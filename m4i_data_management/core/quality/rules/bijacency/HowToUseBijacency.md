@@ -1,16 +1,11 @@
  
-    Checks whether or not the values in the given `column_a` and `column_b` only occur as a unique combination. In our example,we are providing
+    In our example,we are providing
     two dummy datasets and we are comparing the columns "id" and "name".
 
-    This only works for textual values.
-    If a value is not a string, it is converted to a string before comparison.
-
-    If the values occur as a unique combination, assign a score of 1.
-    Otherwise, assign a score of 0.
-     example
+    
 
 
-    To run this code we use test_bijacency.py
+     To run this code we use test_bijacency.py, you should pip install pytest, to be able to run the unit test.
 
     We provide two dummy data sets in the code
 
