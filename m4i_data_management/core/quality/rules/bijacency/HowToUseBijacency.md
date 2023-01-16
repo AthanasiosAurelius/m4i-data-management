@@ -22,7 +22,7 @@
             "function": "Senior developer",
             "from": "01-01-2022"
         }
-    ])
+    ])a
 
     1)We first run a test to see if the columns are bijacent. We are comparing "id" and "name".
     The test will return two 0 or 1
