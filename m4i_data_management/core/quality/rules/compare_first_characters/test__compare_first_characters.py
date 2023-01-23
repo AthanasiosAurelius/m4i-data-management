@@ -36,7 +36,7 @@ def test__compare_first_characters_with_other_values():
 # END test__compare_first_characters_with_other_values
 
 #We are comparing the first two characters to see if they are not similar. In this case we are comparing empty values
-#The output it returns is 0.
+#The output it returns is 0
 
 def test__compare_first_characters_without_values():
 
