@@ -9,10 +9,11 @@
 
     We provide two dummy data sets in the code
 
-    data = DataFrame([
+    
+       data = DataFrame([
         {
             "id": 1234,
-            "name": "John Doe",
+            "name": NaN,
             "function": "Developer",
             "from": "01-01-2021"
         },
@@ -22,7 +23,7 @@
             "function": "Senior developer",
             "from": "01-01-2022"
         }
-    ])a
+    ])
 
     1)We first run a test to see if the columns are bijacent. We are comparing "id" and "name".
     The test will return two 0 or 1
