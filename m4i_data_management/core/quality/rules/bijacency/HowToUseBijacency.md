@@ -4,9 +4,6 @@
 
     
 
-
-     To run this code we use test_bijacency.py, you should pip install pytest, to be able to run the unit test.
-
     We provide two dummy data sets in the code
 
     
