@@ -1,5 +1,5 @@
 from pandas import DataFrame, Series
-from ..compare_first_characters import compare_first_characters
+from .compare_first_characters import compare_first_characters
 from ..starts_with import starts_with
 
 
