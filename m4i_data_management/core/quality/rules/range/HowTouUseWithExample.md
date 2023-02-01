@@ -14,4 +14,4 @@ We are using this function. Th inputs are the dataframe, the column name and the
 
     range(data, "value", 0, 1)
 
-    The output will be 1 because o,1 is between 0 and 1.
+The output will be 1 because o,1 is between 0 and 1.
