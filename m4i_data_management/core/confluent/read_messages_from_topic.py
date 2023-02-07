@@ -46,6 +46,17 @@ def _listener(consumer: Consumer, timeout: int = -1) -> MessageType:
 
 
 def read_messages_from_topic(*topic_name: str, timeout: int = -1, consumer: Consumer = None) -> Generator[MessageType, None, None]:
+    """
+    Returns a generator that continuously reads messages from the specified topic(s) until the topic is depleted, or until a timeout occurs.
+
+    You can specify the topic(s) from which to read the messages by providing a (set of) `topic_name`.
+
+    When a `timeout` is provided, the listener will stop after no messages have been received for the given number of seconds.
+    By default, the generator keeps listening for new messages until the topic is depleted.
+
+    Optionally, you can provide a `consumer` instance to specify the listening behaviour.
+    If no `consumer` is provided, an instance with default settings is used.
+    """
 
     if consumer is None:
         consumer = make_deserializing_consumer(enable_auto_commit=False)

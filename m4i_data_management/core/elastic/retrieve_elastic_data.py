@@ -6,8 +6,6 @@ from pandas import DataFrame
 
 from .utils import make_elastic_connection
 
-PAGE_LENGTH = 5000
-
 QUERY = {
     "query": {
         "match_all": {}
@@ -20,7 +18,6 @@ log = logging.getLogger(__name__)
 def retrieve_elastic_data(
     index_name: str,
     query: str = QUERY,
-    page_length: int = PAGE_LENGTH
 ) -> DataFrame:
     """
     Retrieves the data from the given elastic index as a Pandas DataFrame.
@@ -30,6 +27,7 @@ def retrieve_elastic_data(
     connection = make_elastic_connection()
 
     result = DataFrame()
+
     try:
         search_results = scan(
             client=connection,
