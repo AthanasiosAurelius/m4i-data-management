@@ -66,13 +66,13 @@ print(result)
 
 
 
-df = pd.DataFrame([{"criteria":"completness","Value": result},
-                  {"criteria":"rule2","Value": NaN},
-                  {"criteria":"rule3","Value": NaN},
-                  {"criteria":"rule4","Value": NaN},
-                  {"criteria":"rule5","Value": NaN},
-                  {"criteria":"rule6","Value": NaN},
-                  {"criteria":"rule7","Value": NaN},])
+df = pd.DataFrame([{"data quality rule":"completness","Value": result},
+                  {"data quality rule":"rule2","Value": NaN},
+                  {"data quality rule":"rule3","Value": NaN},
+                  {"data quality rule":"rule4","Value": NaN},
+                  {"data quality rule":"rule5","Value": NaN},
+                  {"data quality rule":"rule6","Value": NaN},
+                  {"data quality rule":"rule7","Value": NaN},])
 
 
 print(df)
