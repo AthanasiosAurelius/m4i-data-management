@@ -16,4 +16,4 @@ This is the function we are using. The inputs are data, the column name and the 
     
     result = validity(data, "value", exampleValues)
 
-The output will 1, because the value of the column exists in the example list..
+The output will 1, because the value of the column exists in the example list.
