@@ -61,13 +61,14 @@ data = columns_names=[
 new=pd.DataFrame(columns_names)
 #put all function here make an ouput file
 result = completeness(new, "name")
+result2= bijacency(new, "id", "name")
 
-print(result)
+print(result2)
 
 
 
 df = pd.DataFrame([{"data quality rule":"completness","Value": result},
-                  {"data quality rule":"rule2","Value": NaN},
+                  {"data quality rule":"bijacency","Value": result2},
                   {"data quality rule":"rule3","Value": NaN},
                   {"data quality rule":"rule4","Value": NaN},
                   {"data quality rule":"rule5","Value": NaN},
