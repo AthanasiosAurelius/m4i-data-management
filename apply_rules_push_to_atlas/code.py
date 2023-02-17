@@ -36,7 +36,7 @@ def atlas_get_quality_rules_empty_dataframe():
     return data
 
 
-print(atlas_get_quality_rules_empty_dataframe())
+#print(atlas_get_quality_rules_empty_dataframe())
 
 
 
