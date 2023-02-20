@@ -1,32 +1,80 @@
-import time
-
-from nxtgen_fte_data_quality.atlas_quality import atlas_dataset_quality
+import pytest
+from pandas import DataFrame
+from vox_data_management.test import assert_has_method_been_called
+from vox_data_management import Quality, ConfigStore
 from pandas import DataFrame, notnull
-from vox_data_management import ConfigStore, load_config_from_env, read_kafka_topic_to_dataframe
-
-"""
-Integration tests for atlas data quality
-"""
-load_config_from_env()
-config_store = ConfigStore.get_instance()
+import pandas as pd
+from nxtgen_fte_data_quality import (get_elastic_data, atlas_get_metadata, atlas_get_quality_rules,write_data_quality_results)
 
 
-def test__atlas_quality_run_write():
-    """
-    The goal of this test is to check if the data is calculated and writen to kafka
-    :return:
-    """
-    atlas_dataset_quality.run()
-    time.sleep(1)  # this sleep is to compensate the a delay between pushing the data to elastic and reading it
-    config_store.load({'confluent_kafka_group_id': 'dq_test_summary'})
-    summary_data_kafka = read_kafka_topic_to_dataframe(source_topic=config_store.get('kafka_quality_summary_topic'))
-    config_store.load({'confluent_kafka_group_id': 'dq_test_details'})
-    details_data_kafka = read_kafka_topic_to_dataframe(source_topic=config_store.get('kafka_quality_detail_topic'))
+
+#from .quality import Quality
 
 
-    assert summary_data_kafka.empty == False
-    assert details_data_kafka.empty == False
+def get_data():
+    return DataFrame([
+        {
+            "id": 1,
+            "abc": "def",
+            "ghi": "jkl"
+        }
+    ]).set_index("id")
+# END get_data
 
-# END test__atlas_quality_run_write
+def data()->DataFrame:
+    data=pd.read_csv("C:\\Users\\Thana\\OneDrive\\Documents\\GitHub\\m4i-data_manage\\m4i-data-management\\apply_rules_push_to_atlas\\MOCK_DATA.csv")
 
-print(test__atlas_quality_run_write())
+    return data
+
+def get_rules():
+    return DataFrame([
+        {
+            "id": 1,
+            "data_field_qualified_name": "a",
+            "data_quality_rule_description": "description",
+            "data_quality_rule_dimension": "dimension",
+            "expression_version": "1",
+            "expression": "completeness('abc')",
+            "active": 1
+        }
+    ])
+# END get_rules
+
+
+def get_metadata():
+    return DataFrame([
+        {
+            "data_field_qualified_name": "a",
+            "data_field_name": "a",
+            "data_attribute_qualified_name": "b",
+            "data_attribute_name": "b",
+            "data_entity_qualified_name": "c",
+            "data_entity_name": "c",
+            "data_domain_qualified_name": "d",
+            "data_domain_name": "d"
+        }
+    ]).set_index("data_field_qualified_name")
+# END get_metadata
+
+
+def propagate(data: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+    pass
+# END _propagate
+
+
+@pytest.fixture
+def quality():
+    return Quality(
+        get_data=get_data,
+        get_rules=get_rules,
+        get_metadata=get_metadata,
+        propagate=propagate
+    )
+# END quality
+
+
+def test__quality_calls_workflow_steps(quality: Quality):
+    with assert_has_method_been_called(quality, "data"), assert_has_method_been_called(quality, "get_rules"), assert_has_method_been_called(quality, "get_metadata"), assert_has_method_been_called(quality, "propagate"):
+        quality.run()
+    # END WITH
+# END test__quality_calls_workflow_steps
