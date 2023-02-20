@@ -11,20 +11,16 @@ from nxtgen_fte_data_quality import (get_elastic_data, atlas_get_metadata, atlas
 #from .quality import Quality
 
 
-def get_data():
-    return DataFrame([
-        {
-            "id": 1,
-            "abc": "def",
-            "ghi": "jkl"
-        }
-    ]).set_index("id")
-# END get_data
 
-def data()->DataFrame:
+
+def get_data()->DataFrame:
     data=pd.read_csv("C:\\Users\\Thana\\OneDrive\\Documents\\GitHub\\m4i-data_manage\\m4i-data-management\\apply_rules_push_to_atlas\\MOCK_DATA.csv")
-
+    data=data.set_index("id")
     return data
+
+    
+
+    
 
 def get_rules():
     return DataFrame([
@@ -74,7 +70,9 @@ def quality():
 
 
 def test__quality_calls_workflow_steps(quality: Quality):
-    with assert_has_method_been_called(quality, "data"), assert_has_method_been_called(quality, "get_rules"), assert_has_method_been_called(quality, "get_metadata"), assert_has_method_been_called(quality, "propagate"):
+    with assert_has_method_been_called(quality, "get_data"), assert_has_method_been_called(quality, "get_rules"), assert_has_method_been_called(quality, "get_metadata"), assert_has_method_been_called(quality, "propagate"):
         quality.run()
     # END WITH
 # END test__quality_calls_workflow_steps
+
+
