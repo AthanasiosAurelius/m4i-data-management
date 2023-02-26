@@ -8,8 +8,8 @@ from nxtgen_fte_data_quality.utils import (get_elastic_data, atlas_get_metadata,
 store = ConfigStore.get_instance()
 
 def get_data()->DataFrame:
-    data=pd.read_csv("C:\\Users\\Thana\\OneDrive\\Documents\\GitHub\\m4i-data_manage\\m4i-data-management\\apply_rules_push_to_atlas\\MOCK_DATA.csv")
-    data=data.set_index("id")
+    data=pd.read_csv("C:\Users\Thana\OneDrive\Desktop\sample_data.csv")
+    #data=data.set_index("id")
     data=pd.DataFrame(data)    
 
 
