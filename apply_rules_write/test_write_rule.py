@@ -1,6 +1,6 @@
 import time
 
-from .m4i_data_management.nxtgen_fte_data_quality.atlas_quality import atlas_dataset_quality
+from nxtgen_fte_data_quality import atlas_dataset_quality
 from vox_data_management import ConfigStore, load_config_from_env, read_kafka_topic_to_dataframe
 
 """
