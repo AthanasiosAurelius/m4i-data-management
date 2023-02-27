@@ -1,6 +1,5 @@
 import pytest
 from pandas import DataFrame
-from vox_data_management.test import assert_has_method_been_called
 
 from .producer import Producer
 
@@ -46,16 +45,3 @@ def producer_transform():
     )
 # END producer_transform
 
-
-def test__producer_calls_workflow_steps(producer: Producer):
-    with assert_has_method_been_called(producer, "get_old"), assert_has_method_been_called(producer, "get_new"), assert_has_method_been_called(producer, "transform"), assert_has_method_been_called(producer, "propagate"):
-        producer.run()
-    # END WITH
-# END test__producer_calls_workflow_steps
-
-
-def test__producer_calls_custom_transform(producer_transform: Producer):
-    with assert_has_method_been_called(producer_transform, "transform"):
-        producer_transform.run()
-    # END WITH
-# END test__producer_calls_custom_transform

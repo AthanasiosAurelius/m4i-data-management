@@ -1,6 +1,7 @@
-from vox_data_management import Quality, ConfigStore
+"""
+from m4i_data_management import Quality, ConfigStore
 import pandas as pd
-from pandas import DataFrame, notnull
+from pandas import DataFrame
 
 from nxtgen_fte_data_quality.utils import (get_elastic_data, atlas_get_metadata, atlas_get_quality_rules,
                                            write_data_quality_results)
@@ -20,3 +21,4 @@ atlas_dataset_quality = Quality(
     get_rules=atlas_get_quality_rules.atlas_get_quality_rules_dataset,
     propagate=write_data_quality_results
 )
+"""

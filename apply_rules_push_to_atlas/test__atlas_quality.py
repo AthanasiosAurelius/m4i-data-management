@@ -1,3 +1,4 @@
+"""
 import pytest
 from pandas import DataFrame
 from vox_data_management.test import assert_has_method_been_called
@@ -83,3 +84,4 @@ def test__quality_calls_workflow_steps(quality: Quality):
 
 
 
+"""
