@@ -9,7 +9,7 @@ from nxtgen_fte_data_quality.utils import (get_elastic_data, atlas_get_metadata,
 store = ConfigStore.get_instance()
 
 def get_data()->DataFrame:
-    data=pd.read_csv("C:\Users\Thana\OneDrive\Desktop\sample_data.csv")
+    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_data.csv")
     ##data=data.set_index("id")
     data=pd.DataFrame(data)    
 
@@ -24,3 +24,5 @@ atlas_dataset_quality = Quality(
 
 
 print(get_data())
+
+#
