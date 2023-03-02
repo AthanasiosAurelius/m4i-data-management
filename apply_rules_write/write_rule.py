@@ -5,12 +5,12 @@ from pandas import DataFrame
 
  
 
-from m4i_data_management import atlas_get_metadata
+from m4i_data_management import atlas_get_metadata,atlas_get_quality_rules,write_data_quality_results
 
 #, atlas_get_quality_rules, write_data_quality_results)
                                  
 
-
+#
 store = ConfigStore.get_instance()
 
 def get_data()->DataFrame:
