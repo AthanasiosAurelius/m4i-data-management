@@ -174,3 +174,4 @@ log/**
 
 out/**
 !out/.gitkeep
+nxtgen-fte-data-quality/
