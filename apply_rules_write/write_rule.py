@@ -3,13 +3,18 @@ from m4i_data_management import Quality, ConfigStore
 import pandas as pd
 from pandas import DataFrame
 
-from nxtgen_fte_data_quality.utils import (get_elastic_data, atlas_get_metadata, atlas_get_quality_rules,
-                                           write_data_quality_results)
+ 
+
+from m4i_data_management import atlas_get_metadata
+
+#, atlas_get_quality_rules, write_data_quality_results)
+                                 
+
 
 store = ConfigStore.get_instance()
 
 def get_data()->DataFrame:
-    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_data.csv")
+    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample\sample_data.csv")
     ##data=data.set_index("id")
     data=pd.DataFrame(data)    
 
