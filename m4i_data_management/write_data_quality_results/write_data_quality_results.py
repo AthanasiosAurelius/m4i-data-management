@@ -2,8 +2,7 @@ import logging
 
 import pandas as pd
 from pandas import DataFrame, notnull
-from m4i_data_management import ConfigStore
-#push_dict_to_topic, make_serializing_producer
+from m4i_data_management import ConfigStore,push_dict_to_topic, make_serializing_producer
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()
 
@@ -22,6 +21,8 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
     results = results.where(notnull(results), None)
     results['result_id'] = results["result_id"].map(str)
     results['run_id'] = results["run_id"].map(str)
+
+    #These have to be in config.py
 
     kafka_summary_topic_name, kafka_details_topic_name, dataset_index_column = store.get_many(
         "kafka_quality_summary_topic",

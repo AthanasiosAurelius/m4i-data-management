@@ -16,6 +16,7 @@ function will return 1, otherwise it will return 0
  This is the function tha we will use. The inputs are data and the name of the column we want to check.
      
      completeness(data, "name")
+     
  The output here will be 0, because the column 'name' has no value in it.
 
 

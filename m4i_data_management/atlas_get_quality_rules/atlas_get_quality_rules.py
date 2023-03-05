@@ -3,6 +3,8 @@ from pandas import DataFrame
 #from m4i_data_management.core import get_entity_by_guid
 from m4i_data_management import ConfigStore
 
+from m4i_data_management import atlas_get_quality_rules
+
 store = ConfigStore.get_instance()
 
 

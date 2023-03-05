@@ -12,7 +12,7 @@ from m4i_data_management import atlas_get_metadata,atlas_get_quality_rules,write
 
 #
 store = ConfigStore.get_instance()
-
+#use relative path
 def get_data()->DataFrame:
     data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample\sample_data.csv")
     ##data=data.set_index("id")
