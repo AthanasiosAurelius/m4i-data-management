@@ -5,7 +5,7 @@ from confluent_kafka import SerializingProducer
 from pandas import Series
 from typing_extensions import Literal
 
-from ..utils import make_serializing_producer
+#from ..utils import make_serializing_producer
 
 log = logging.getLogger(__name__)
 
@@ -33,7 +33,8 @@ def produce_message(producer: SerializingProducer, topic_name: str, key: Any, va
 #         value_schema_id=value_schema_id,
 #         value_schema_type=value_schema_type,
 #         key_schema_id=key_schema_id,
-#         key_schema_type=key_schema_type
+#         key_schema_type=key_schema_type,
+#         topic_name=topic_name
 #     )
 
 #     try:

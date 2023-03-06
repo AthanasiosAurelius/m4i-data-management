@@ -2,7 +2,7 @@ import logging
 
 import pandas as pd
 from pandas import DataFrame, notnull
-from m4i_data_management import ConfigStore,push_dict_to_topic, make_serializing_producer
+from m4i_data_management import ConfigStore,propagate_change_events, make_serializing_producer
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()
 
