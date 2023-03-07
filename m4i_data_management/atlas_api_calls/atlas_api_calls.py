@@ -3,7 +3,7 @@ from m4i_data_management import ConfigStore
 #load_config_from_env
 #load_config_from_env()
 
-
+#outdated version use from core!!
 def get_entity_by_guid(guid: str):
     """
     Retrieves the Atlas entity with the given `guid` from the Atlas API

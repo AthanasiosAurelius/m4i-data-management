@@ -2,9 +2,17 @@ import logging
 
 import pandas as pd
 from pandas import DataFrame, notnull
+from confluent_kafka import SerializingProducer
 from m4i_data_management import ConfigStore,propagate_change_events, make_serializing_producer
+from m4i_data_management.write_data_quality_results import push_dict_to_topic
+from m4i_data_management import propagate_change_events
+from m4i_data_management import write_data_quality_results
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()
+
+
+
+
 
 
 def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
@@ -13,7 +21,7 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
     :param compliant: The compliant fields to the data quality rules
     :param non_compliant: The non-compliant fields to the data quality rules
     :return: writes the results to elastic.quality.summary.index defined in the config.
-        writes the compliant and non_compliant, with the removal of data to elastic.quality.detail.index
+        writes the compliant and non_compliant, with the removal of data to kafka
         defined in config.
     """
 
@@ -33,6 +41,7 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
 
     summary_producer = make_serializing_producer(
         topic_name=kafka_summary_topic_name,
+        #need to check shcem registry if  it's necessary for make serializer producer
         value_schema_type="avro",
     )
 
