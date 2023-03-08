@@ -16,6 +16,7 @@ store = ConfigStore.get_instance()
 def get_data_csv()->DataFrame:
     data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample\sample_data.csv")
     ##data=data.set_index("id")
+    #
     data=pd.DataFrame(data)    
 
 
