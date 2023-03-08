@@ -1,4 +1,4 @@
-from . import produce_message, SerializingProducer
+from m4i_data_management import produce_message, SerializingProducer
 
 def push_dict_to_topic(destination_topic: str, index: str, row_value: dict, producer: SerializingProducer, flush: bool =True):
     """
