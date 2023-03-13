@@ -14,7 +14,7 @@ from m4i_data_management import atlas_get_metadata,atlas_get_quality_rules,write
 store = ConfigStore.get_instance()
 #use relative path
 def get_data_csv()->DataFrame:
-    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample\sample_data.csv")
+    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample1.csv")
     ##data=data.set_index("id")
     #
     data=pd.DataFrame(data)    
@@ -32,3 +32,9 @@ atlas_dataset_quality = Quality(
 print(get_data_csv())
 
 #####
+
+
+rules= atlas_get_quality_rules.atlas_get_quality_rules_dataset()
+
+
+
