@@ -100,7 +100,7 @@ async def get_quality_rules(fields: List[BusinessField], access_token: str) -> L
     ]
 
     return await asyncio.gather(*quality_rules)
-# END get_quality_rules 
+# END get_quality_rules
 
 
 async def get_quality_rules_from_atlas(dataset_name: str, dataset_atlas_guid: Optional[str] = None) -> DataFrame:
