@@ -4,6 +4,8 @@ credentials = {
     "confluent.schema.registry.key": "YOUR_SCHEMA_REGISTRY_KEY",
     "confluent.schema.registry.secret": "YOUR_SCHEMA_REGISTRY_SECRET",
     "elastic.cloud.id": "YOUR_ELASTIC_CLOUD_ID",
+    "keycloak.credentials.username": "atlas",
+    "keycloak.credentials.password": "4n6ERGJJPDWV4ijK",
     "elastic.cloud.username": "YOUR_ELASTIC_CLOUD_USERNAME",
     "elastic.cloud.password": "YOUR_ELASTIC_CLOUD_PASSWORD"
 }
