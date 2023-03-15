@@ -31,7 +31,7 @@ class Quality():
         self.propagate = propagate
     # END __init__
 
-    def run(self):
+    async def run(self):
         """
         Runs the quality check once and applies the following steps:
 
@@ -49,7 +49,7 @@ class Quality():
 
         log.info(f"Retrieved {len(data.index)} records")
 
-        rules = self.get_rules()
+        rules = await self.get_rules()
 
         log.info(f"Retrieved {len(rules.index)} data quality rules")
 

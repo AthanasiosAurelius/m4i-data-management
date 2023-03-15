@@ -16,6 +16,7 @@ setup(
         "pytest",
         "requests",
         "typing_extensions",
+         "m4i_atlas_core",
     ],
     extras_require={
         "dev": [

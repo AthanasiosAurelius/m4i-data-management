@@ -7,28 +7,44 @@ from pandas import notnull
 from m4i_data_management.atlas_get_quality_rules import *
 #from m4i_data_management. import get_elastic_data 
 from  m4i_data_management.core.elastic import *
+from config import config
+from credentials import credentials
 
- 
+
+
+
 
 from m4i_data_management import atlas_get_metadata,atlas_get_quality_rules,write_data_quality_results
 
 
 
-                                 
+#Load config credentials                                
 store = ConfigStore.get_instance()
-
-
-get_elastic_data= retrieve_elastic_data("example_system--example_collection--example_user--uid--1")
+store.load({**config, **credentials})
 
 
 
-#use relative path
+#get_elastic_data= retrieve_elastic_data("example_system--example_collection--example_user--uid--1")
+
+
+
+# #use relative path
 def get_data_csv()->DataFrame:
     data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample1.csv", sep=";")
-    data=pd.DataFrame(data)
-    data=data.set_index('ID')
+    print(data)
+    #data=pd.DataFrame(data)
+    # data=data.columns.str.lower()
+    # data=data.set_index(keys="id", drop=False)
+    return data
+
     
-    
+# def get_data_csv():
+#     path=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample1.csv", sep=";")
+#     data = pd.read_csv(path)
+#     if not isinstance(data, pd.DataFrame):
+#         data = pd.DataFrame(data)
+#     data = data.set_index(keys="id", drop=False)
+#     return data    
       
 
 
@@ -39,7 +55,6 @@ atlas_dataset_quality = Quality(
     get_rules=atlas_get_quality_rules.atlas_get_quality_rules_dataset,
     propagate=write_data_quality_results
 )
-
 
 atlas_dataset_quality.run()
 

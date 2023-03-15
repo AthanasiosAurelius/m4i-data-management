@@ -1,9 +1,12 @@
 from pandas import DataFrame
+from m4i_atlas_core import get_entity_by_guid
 
 #from m4i_data_management.core import get_entity_by_guid
 from m4i_data_management import ConfigStore
 
-from m4i_data_management.atlas_api_calls import *
+#from m4i_data_management.atlas_api_calls import *
+
+from m4i_atlas_core import core
 
 store = ConfigStore.get_instance()
 
@@ -78,7 +81,7 @@ def atlas_create_data_quality_rule_data_dictionary_representation(quality_rule_e
 
 # END atlas_create_data_quality_rule_data_dictionary_representation
 
-def atlas_get_quality_rules_dataset():
+async def atlas_get_quality_rules_dataset():
     """
     A dataframe with all the data quality rules in atlas for a dataset given in the config
 
@@ -86,7 +89,7 @@ def atlas_get_quality_rules_dataset():
     :return: data - DataFrame of the qualifed Rules and the information pretaining to it as
     """
 
-    dataset_entity = get_entity_by_guid(store.get("atlas_dataset_guid"))
+    dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid"))
 
     rule_dataframe = atlas_get_quality_rules_empty_dataframe()
 
