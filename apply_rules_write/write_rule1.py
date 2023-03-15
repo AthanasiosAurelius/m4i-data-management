@@ -1,5 +1,6 @@
 
-from m4i_data_management import Quality, ConfigStore
+from m4i_data_management import Quality
+from m4i_atlas_core import ConfigStore
 import pandas as pd
 from pandas import DataFrame
 from m4i_data_management.core.utils import *

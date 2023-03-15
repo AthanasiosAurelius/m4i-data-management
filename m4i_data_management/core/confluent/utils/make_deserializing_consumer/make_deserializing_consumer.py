@@ -1,6 +1,7 @@
 from confluent_kafka import DeserializingConsumer
 
-from .....config import ConfigStore
+#from .....config import ConfigStore
+from m4i_atlas_core import ConfigStore
 from ..make_deserializer import make_deserializer
 from ..make_schema_registry_client import make_schema_registry_client
 

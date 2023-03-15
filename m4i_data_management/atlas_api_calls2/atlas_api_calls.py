@@ -1,5 +1,5 @@
 import requests
-from m4i_data_management import ConfigStore 
+from m4i_atlas_core import ConfigStore 
 from m4i_atlas_core.functions import  atlas
 #load_config_from_env
 #load_config_from_env()

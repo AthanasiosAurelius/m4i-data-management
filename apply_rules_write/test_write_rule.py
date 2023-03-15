@@ -8,7 +8,7 @@ import time
 
 import pandas as pd
 import pytest
-from m4i_data_management import  ConfigStore
+from m4i_atlas_core import  ConfigStore
 
 from m4i_data_management import write_data_quality_results
 

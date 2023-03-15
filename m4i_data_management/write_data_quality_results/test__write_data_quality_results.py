@@ -1,5 +1,5 @@
 import time
-from vox_data_management import load_config_from_env
+from m4i_data_management import load_config_from_env
 
 load_config_from_env()
 

@@ -7,5 +7,6 @@ credentials = {
     "keycloak.credentials.username": "atlas",
     "keycloak.credentials.password": "4n6ERGJJPDWV4ijK",
     "elastic.cloud.username": "YOUR_ELASTIC_CLOUD_USERNAME",
-    "elastic.cloud.password": "YOUR_ELASTIC_CLOUD_PASSWORD"
+    "elastic.cloud.password": "YOUR_ELASTIC_CLOUD_PASSWORD",
+   
 }

@@ -1,5 +1,6 @@
 
-from m4i_data_management import Quality, ConfigStore
+from m4i_data_management import Quality
+from m4i_atlas_core import ConfigStore
 import pandas as pd
 from pandas import DataFrame
 from m4i_data_management.core.utils import *
@@ -22,6 +23,12 @@ from m4i_data_management import atlas_get_metadata,atlas_get_quality_rules,write
 #Load config credentials                                
 store = ConfigStore.get_instance()
 store.load({**config, **credentials})
+
+atlas_url, username, password = store.get_many(
+        "atlas.server.url",
+        "atlas.credentials.username",
+        "atlas.credentials.password"
+    )
 
 
 

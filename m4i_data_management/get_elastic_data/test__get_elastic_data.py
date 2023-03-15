@@ -1,11 +1,11 @@
 from pandas import read_excel
 
 from .get_elastic_data import *
-from vox_data_management import load_config_from_env
+from m4i_data_management import load_config_from_env
 
 load_config_from_env()
 
-from vox_data_management import ConfigStore
+from m4i_atlas_core import ConfigStore
 
 config_store = ConfigStore.get_instance()
 sample_data_excel_path = "sample_data/sample_data.xlsx"

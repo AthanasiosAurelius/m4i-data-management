@@ -6,7 +6,8 @@ from . import atlas_get_data_fields_empty_dataframe, \
     atlas_create_data_entities_data_dictionary_representation, atlas_create_data_domain_data_dictionary_representation
 #from ..atlas_api_calls import get_entity_by_guid
 from m4i_atlas_core import core
-from m4i_data_management import ConfigStore
+from m4i_atlas_core import get_entity_by_guid
+from m4i_atlas_core import ConfigStore
 
 store = ConfigStore.get_instance()
 def get_metadata_dataframes():

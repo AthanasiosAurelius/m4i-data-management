@@ -2,7 +2,7 @@ from pandas import DataFrame
 from m4i_atlas_core import get_entity_by_guid
 
 #from m4i_data_management.core import get_entity_by_guid
-from m4i_data_management import ConfigStore
+from m4i_atlas_core import ConfigStore
 
 #from m4i_data_management.atlas_api_calls import *
 

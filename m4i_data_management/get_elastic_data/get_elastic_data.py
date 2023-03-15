@@ -1,6 +1,6 @@
 from pandas import DataFrame
 from m4i_data_management import retrieve_elastic_data as get_data
-from m4i_data_management import ConfigStore
+from m4i_atlas_core import ConfigStore
 store = ConfigStore.get_instance()
 
 def set_index(data: DataFrame):

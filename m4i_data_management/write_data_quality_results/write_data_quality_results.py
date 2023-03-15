@@ -3,7 +3,8 @@ import logging
 import pandas as pd
 from pandas import DataFrame, notnull
 from confluent_kafka import SerializingProducer
-from m4i_data_management import ConfigStore,propagate_change_events, make_serializing_producer
+from m4i_data_management import propagate_change_events, make_serializing_producer
+from m4i_atlas_core import ConfigStore
 from m4i_data_management.write_data_quality_results import push_dict_to_topic
 from m4i_data_management import propagate_change_events
 from m4i_data_management import write_data_quality_results
