@@ -22,10 +22,14 @@ def atlas_get_quality_rules_dataframe(data: List[BusinessDataQuality] = []):
         "active",
         "expression_version"
     ]
-    data = DataFrame(data, columns=columns_names)
+    data_details = [
+        get_data_quality_rule_details(rule)
+        for rule in data
+    ]
+    data = DataFrame(data_details, columns=columns_names)
 
     return data
-# END atlas_get_quality_rules_empty_dataframe
+# END atlas_get_quality_rules_dataframe
 
 
 def get_data_quality_rule_details(quality_rule_entity: BusinessDataQuality) -> dict:
@@ -34,18 +38,18 @@ def get_data_quality_rule_details(quality_rule_entity: BusinessDataQuality) -> d
     :param quality_rule_entity: The data quality rule entity
     :return: a dictionary with required attributes describing data quality rule
     """
-    rule_attributes = quality_rule_entity.attributes.unmapped_attributes
+    rule_attributes = quality_rule_entity.attributes
 
     rule = {
-        "id": rule_attributes['id'],
-        "data_field_qualified_name": rule_attributes['qualifiedName'],
-        "business_rule_description": rule_attributes['businessRuleDescription'],
-        "data_quality_rule_description": rule_attributes['ruleDescription'],
-        "data_quality_rule_dimension": rule_attributes['qualityDimension'],
-        "filter": rule_attributes['filterRequired'],
-        "expression": rule_attributes['expression'],
-        "active": rule_attributes['active'],
-        "expression_version": rule_attributes['expressionVersion']
+        "id": rule_attributes.id,
+        "data_field_qualified_name": rule_attributes.qualified_name,
+        "business_rule_description": rule_attributes.business_rule_description,
+        "data_quality_rule_description": rule_attributes.rule_description,
+        "data_quality_rule_dimension": rule_attributes.quality_dimension,
+        "filter": rule_attributes.filter_required,
+        "expression": rule_attributes.expression,
+        "active": rule_attributes.active,
+        "expression_version": rule_attributes.expression_version
     }
 
     return rule
@@ -71,19 +75,19 @@ async def get_dataset(dataset_name: str, access_token: str, dataset_atlas_guid: 
             exit(1)
         if len(dataset_entity_headers) == 0:
             print(
-                f"No dataset entity with qualified name '{dataset_name}' was found. Please provide the atlas guid of the dataset as well.")
+                f"No dataset entity with the name '{dataset_name}' was found. Please provide the atlas guid of the dataset as well.")
             exit(1)
 
         dataset_atlas_guid = dataset_entity_headers[0].guid
 
-    return await get_entity_by_guid(guid=dataset_atlas_guid, access_token=access_token)
+    return await get_entity_by_guid(guid=dataset_atlas_guid, entity_type=BusinessDataset, access_token=access_token)
 # END get_dataset
 
 
 async def get_fields(dataset: BusinessDataset, access_token: str) -> List[BusinessField]:
 
     fields = [
-        get_entity_by_guid(guid=field.guid, access_token=access_token)
+        get_entity_by_guid(guid=field.guid, entity_type=BusinessField, access_token=access_token)
         for field in dataset.attributes.fields
     ]
 
@@ -94,7 +98,7 @@ async def get_fields(dataset: BusinessDataset, access_token: str) -> List[Busine
 async def get_quality_rules(fields: List[BusinessField], access_token: str) -> List[BusinessDataQuality]:
 
     quality_rules = [
-        get_entity_by_guid(guid=quality_rule.guid, access_token=access_token)
+        get_entity_by_guid(guid=quality_rule['guid'], entity_type=BusinessDataQuality, access_token=access_token)
         for field in fields
         for quality_rule in field.relationship_attributes['dataQuality']
     ]
