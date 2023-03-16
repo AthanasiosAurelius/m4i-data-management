@@ -1,5 +1,6 @@
 from m4i_data_management import Quality
 from m4i_atlas_core import ConfigStore
+#from m4i_data_management import ConfigStore
 from pandas import DataFrame, notnull
 from nxtgen_fte_data_quality.utils import (get_elastic_data, atlas_get_metadata, atlas_get_quality_rules,
                                            write_data_quality_results)

@@ -1,8 +1,7 @@
 from confluent_kafka import Producer
 
-from m4i_atlas_core import ConfigStore
 
-#from .....config import ConfigStore
+from .....config import ConfigStore
 
 config = ConfigStore.get_instance()
 

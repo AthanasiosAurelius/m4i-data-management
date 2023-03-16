@@ -8,6 +8,7 @@ from . import atlas_get_data_fields_empty_dataframe, \
 from m4i_atlas_core import core
 from m4i_atlas_core import get_entity_by_guid
 from m4i_atlas_core import ConfigStore
+#from m4i_data_management import ConfigStore
 
 store = ConfigStore.get_instance()
 def get_metadata_dataframes():
