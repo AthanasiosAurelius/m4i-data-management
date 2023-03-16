@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  devcontainer:
+    build:
+      dockerfile: Dockerfile
+      args: 
+        VARIANT: "3.10-bullseye"
+        NODE_VERSION: "lts/*"
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    mem_limit: 1000m

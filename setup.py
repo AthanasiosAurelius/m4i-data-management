@@ -12,11 +12,11 @@ setup(
         "dict_hash",
         "elasticsearch",
         "fastavro",
+        "jsonschema",
         "pandas",
-        "pytest",
         "requests",
         "typing_extensions",
-        "m4i_atlas_core"
+        "m4i_atlas_core @ git+https://github.com/aureliusenterprise/m4i_atlas_core.git#egg=m4i_atlas_core"
     ],
     extras_require={
         "dev": [
