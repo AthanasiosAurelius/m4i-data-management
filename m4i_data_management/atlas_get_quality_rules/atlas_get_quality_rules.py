@@ -9,6 +9,8 @@ from m4i_atlas_core import ConfigStore
 #from m4i_data_management.atlas_api_calls import *
 
 from m4i_atlas_core import core
+from m4i_atlas_core import get_keycloak_token
+
 
 store = ConfigStore.get_instance()
 
@@ -90,8 +92,8 @@ async def atlas_get_quality_rules_dataset():
     :param dataSet_name: The name of the data set we are checking (example: for fte its
     :return: data - DataFrame of the qualifed Rules and the information pretaining to it as
     """
-
-    dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid"))
+    access_token=get_keycloak_token()
+    dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid"),access_token=access_token)
 
     rule_dataframe = atlas_get_quality_rules_empty_dataframe()
 

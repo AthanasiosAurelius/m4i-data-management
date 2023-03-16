@@ -30,6 +30,8 @@ store.load({**config, **credentials})
 
 access_token=get_keycloak_token()
 
+#store.load({})
+
 # atlas_url, username, password = store.get_many(
 #         "atlas.server.url",
 #         "atlas.credentials.username",
@@ -37,11 +39,11 @@ access_token=get_keycloak_token()
 #     )
 
 
-atlas_url, username, password = store.get_many(
-    "keycloak.server.url",
-    "keycloak.credentials.username",
-    "keycloak.credentials.password"
-    )
+# atlas_url, username, password = store.get_many(
+#     "keycloak.server.url",
+#     "keycloak.credentials.username",
+#     "keycloak.credentials.password"
+#     )
 
 
 
