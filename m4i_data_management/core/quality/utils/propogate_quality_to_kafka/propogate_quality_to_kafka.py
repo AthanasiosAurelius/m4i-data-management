@@ -20,14 +20,14 @@ def write_data_quality_results_to_kafka(results: DataFrame, compliant: DataFrame
 
 
     Expected in config:
-        "kafka_quality_summary_topic" |string
-        "kafka_quality_detail_topic" |string
-        "dataset_index_column" |string
-        'sasl_flag' | Bool
-        "confluent.kafka.bootstrap.servers" |string
+        "kafka_quality_summary_topic" |string | required
+        "kafka_quality_detail_topic" |string | required
+        "dataset_index_column" |string  | required
+        'sasl_flag' | Bool | optional | default True
+        "confluent.kafka.bootstrap.servers" |string | required
     if sasl:
-        "confluent.auth.sasl.username" |string
-        "confluent.auth.sasl.password" |string
+        "confluent.auth.sasl.username" |string | required
+        "confluent.auth.sasl.password" |string | required
 
     """
 
@@ -48,8 +48,7 @@ def write_data_quality_results_to_kafka(results: DataFrame, compliant: DataFrame
         row_data = row.to_dict()
         producer.produce(topic=kafka_summary_topic_name, value=row_data)
 
-    columns = [
-                  dataset_index_column] + [
+    columns = [dataset_index_column] + [
                   'business_rule_id', 'data_field_qualified_name', 'data_quality_rule_description',
                   'data_quality_rule_dimension', 'result_id', 'test_date', 'run_id', 'run_date',
                   'data_attribute_qualified_name', 'data_field_name', 'data_entity_qualified_name',

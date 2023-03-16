@@ -9,7 +9,7 @@ def make_confluent_producer() -> Producer:
     """
     Returns a connection to Confluent Kafka in the Data Management Platform that can be used to push change events.
 
-
+    It is assumed that sasl is used, if this is not the case please set the in the config key "sasl_flag" to False
     """
     sasl_flag = config.get('sasl_flag', default=True)
     bootstrap_server_url = config.get("confluent.kafka.bootstrap.servers")
