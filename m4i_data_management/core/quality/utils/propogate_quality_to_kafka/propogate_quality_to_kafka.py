@@ -25,7 +25,7 @@ def write_data_quality_results_to_kafka(results: DataFrame, compliant: DataFrame
         "dataset_index_column" |string  | required
         'sasl_flag' | Bool | optional | default True
         "confluent.kafka.bootstrap.servers" |string | required
-    if sasl:
+    if sasl_flag:
         "confluent.auth.sasl.username" |string | required
         "confluent.auth.sasl.password" |string | required
 
