@@ -45,40 +45,41 @@ def atlas_create_data_quality_rule_data_dictionary_representation(quality_rule_e
     :return: a list of dictionaries describing the available data quality rule
     """
     list_quality_rules = []
-    rule_QN = quality_rule_entity["entity"]["attributes"]["qualifiedName"]
+    rule_QN = quality_rule_entity.attributes.unmapped_attributes["qualifiedName"]
     rule_QN_split = rule_QN.split('--')
     rule_info = {
         'id': rule_QN_split[-1],
         'data_field_qualified_name': "--".join(rule_QN_split[:-1])
     }
     # "content_structure_qualified_name"
-    if "businessRuleDescription" in quality_rule_entity["entity"]["attributes"] and \
-        quality_rule_entity["entity"]["attributes"]["businessRuleDescription"] is not None:
+    if "businessRuleDescription" in quality_rule_entity.attributes.unmapped_attributes and \
+        quality_rule_entity.attributes.unmapped_attributes["businessRuleDescription"] is not None:
         rule_info.update(
-            {'business_rule_description': quality_rule_entity["entity"]["attributes"]["businessRuleDescription"]})
-    if "ruleDescription" in quality_rule_entity["entity"]["attributes"] and quality_rule_entity["entity"]["attributes"][
-        "ruleDescription"] is not None:
+            {'business_rule_description':  quality_rule_entity.attributes.unmapped_attributes["businessRuleDescription"]})
+    if "ruleDescription" in quality_rule_entity.attributes.unmapped_attributes and quality_rule_entity.attributes.unmapped_attributes is not None:
         rule_info.update(
-            {'data_quality_rule_description': quality_rule_entity["entity"]["attributes"]["ruleDescription"]})
+            {'data_quality_rule_description':  quality_rule_entity.attributes.unmapped_attributes["businessRuleDescription"]})
 
-    if "qualityDimension" in quality_rule_entity["entity"]["attributes"] and \
-        quality_rule_entity["entity"]["attributes"][
+    if "qualityDimension" in quality_rule_entity.attributes.unmapped_attributes and \
+        quality_rule_entity.attributes.unmapped_attributes[
             "qualityDimension"] is not None:
         rule_info.update(
-            {'data_quality_rule_dimension': quality_rule_entity["entity"]["attributes"]["qualityDimension"]})
-    if "filterRequired" in quality_rule_entity["entity"]["attributes"] and quality_rule_entity["entity"]["attributes"][
+            {'data_quality_rule_dimension': quality_rule_entity.attributes.unmapped_attributes[
+            "qualityDimension"]})
+    if "filterRequired" in quality_rule_entity.attributes.unmapped_attributes and quality_rule_entity.attributes.unmapped_attributes[
         "filterRequired"] is not None:
-        rule_info.update({'filter': quality_rule_entity["entity"]["attributes"]["filterRequired"]})
-    if "expression" in quality_rule_entity["entity"]["attributes"] and quality_rule_entity["entity"]["attributes"][
+        rule_info.update({'filter':quality_rule_entity.attributes.unmapped_attributes[
+        "filterRequired"]})
+    if "expression" in quality_rule_entity.attributes.unmapped_attributes and quality_rule_entity.attributes.unmapped_attributes[
         "expression"] is not None:
-        rule_info.update({'expression': quality_rule_entity["entity"]["attributes"]["expression"]})
-    if "active" in quality_rule_entity["entity"]["attributes"] and quality_rule_entity["entity"]["attributes"][
+        rule_info.update({'expression': quality_rule_entity.attributes.unmapped_attributes["expression"]})
+    if "active" in quality_rule_entity.attributes.unmapped_attributes and quality_rule_entity.attributes.unmapped_attributes[
         "active"] is not None:
-        rule_info.update({'active': quality_rule_entity["entity"]["attributes"]["active"]})
-    if "expressionVersion" in quality_rule_entity["entity"]["attributes"] and \
-        quality_rule_entity["entity"]["attributes"][
+        rule_info.update({'active':quality_rule_entity.attributes.unmapped_attributes["active"]})
+    if "expressionVersion" in quality_rule_entity.attributes.unmapped_attributes and \
+       quality_rule_entity.attributes.unmapped_attributes[
             "expressionVersion"] is not None:
-        rule_info.update({'expression_version': quality_rule_entity["entity"]["attributes"]["expressionVersion"]})
+        rule_info.update({'expression_version': quality_rule_entity.attributes.unmapped_attributes["expressionVersion"]})
     list_quality_rules.append(rule_info)
     return list_quality_rules
 
@@ -94,13 +95,17 @@ async def atlas_get_quality_rules_dataset():
     """
     access_token=get_keycloak_token()
     dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid"),access_token=access_token)
+    #print(dir(dataset_entity))
+    fields = dataset_entity.attributes.unmapped_attributes["fields"]
 
     rule_dataframe = atlas_get_quality_rules_empty_dataframe()
 
-    for field in dataset_entity["entity"]["attributes"]["fields"]:
-        field_entity = get_entity_by_guid(field["guid"])
-        for rule in field_entity["entity"]["relationshipAttributes"]["dataQuality"]:
-            rule_entity = get_entity_by_guid(rule["guid"])
+    #for field in dataset_entity["entity"]["attributes"]["fields"]:
+    for field in fields:
+
+        field_entity = await get_entity_by_guid(field["guid"],access_token=access_token)
+        for rule in field_entity.relationship_attributes["dataQuality"]:
+            rule_entity = await get_entity_by_guid(rule["guid"],access_token=access_token)
             rule_dataframe = rule_dataframe.append(
                 atlas_create_data_quality_rule_data_dictionary_representation(rule_entity))
     rule_dataframe = rule_dataframe.infer_objects()

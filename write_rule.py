@@ -28,7 +28,7 @@ store.load({**config, **credentials})
 
 #I have to see keycloak token
 
-access_token=get_keycloak_token()
+#access_token=get_keycloak_token()
 
 #store.load({})
 
