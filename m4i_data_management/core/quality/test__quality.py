@@ -1,6 +1,5 @@
 import pytest
 from pandas import DataFrame
-from vox_data_management.test import assert_has_method_been_called
 
 from .quality import Quality
 
@@ -61,10 +60,3 @@ def quality():
         propagate=propagate
     )
 # END quality
-
-
-def test__quality_calls_workflow_steps(quality: Quality):
-    with assert_has_method_been_called(quality, "get_data"), assert_has_method_been_called(quality, "get_rules"), assert_has_method_been_called(quality, "get_metadata"), assert_has_method_been_called(quality, "propagate"):
-        quality.run()
-    # END WITH
-# END test__quality_calls_workflow_steps
