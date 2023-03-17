@@ -28,7 +28,10 @@ store.load({**config, **credentials})
 
 #I have to see keycloak token
 
-#access_token=get_keycloak_token()
+# access_token=get_keycloak_token()
+# async def data_entity():
+#     dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid",access_token))
+#     return dataset_entity
 
 #store.load({})
 
@@ -54,7 +57,7 @@ store.load({**config, **credentials})
 
 # #use relative path
 def get_data_csv()->DataFrame:
-    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample1.csv", sep=";")
+    data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample_data.csv", sep=";")
     print(data)
     #data=pd.DataFrame(data)
     # data=data.columns.str.lower()

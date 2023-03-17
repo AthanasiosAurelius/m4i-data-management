@@ -62,7 +62,7 @@ class Quality():
             f"Evaluated {len(summary.index)} data quality rules; found {len(compliant.index)} compliant rows and {len(non_compliant.index)} non-compliant rows"
         )
 
-        metadata = self.get_metadata()
+        metadata = await self.get_metadata()
 
         log.info(
             f"Retrieved {len(metadata.index)} rows of metadata from the data dictionary"

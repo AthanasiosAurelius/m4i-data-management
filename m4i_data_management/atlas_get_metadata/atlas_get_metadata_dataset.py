@@ -1,4 +1,5 @@
 import pandas as pd
+from m4i_atlas_core import get_keycloak_token
 from . import atlas_get_data_fields_empty_dataframe, \
     atlas_get_data_attributes_empty_dataframe, atlas_get_data_entities_empty_dataframe, \
     atlas_get_data_domains_empty_dataframe, atlas_create_data_fields_data_dictionary_representation, \
@@ -8,11 +9,14 @@ from . import atlas_get_data_fields_empty_dataframe, \
 from m4i_atlas_core import core
 from m4i_atlas_core import get_entity_by_guid
 from m4i_atlas_core import ConfigStore
+import asyncio
 #from m4i_data_management import ConfigStore
 
 store = ConfigStore.get_instance()
-def get_metadata_dataframes():
-    dataset_entity = get_entity_by_guid(store.get("atlas_dataset_guid"))
+
+async def get_metadata_dataframes():
+    access_token=get_keycloak_token()
+    dataset_entity = await get_entity_by_guid(store.get("atlas_dataset_guid"),access_token=access_token)
 
     fields_dataframe = atlas_get_data_fields_empty_dataframe()
     attributes_dataframe = atlas_get_data_attributes_empty_dataframe()
@@ -20,8 +24,8 @@ def get_metadata_dataframes():
     domains_dataframe = atlas_get_data_domains_empty_dataframe()
 
     searched_guids = []
-
-    for field in dataset_entity["entity"]["attributes"]["fields"]:
+    #fix get_entity_by_guid add token keycloak 
+    for field in dataset_entity.attributes.unmapped_attributes["fields"]:
         if field["guid"] not in searched_guids:
             field_entity = get_entity_by_guid(field["guid"])
             searched_guids.append(field["guid"])
@@ -59,7 +63,7 @@ def get_metadata_dataframes():
 
 # END get_metadata_dataframes
 
-def atlas_get_metadata_dataset():
+async def atlas_get_metadata_dataset():
     """
     atlas_get_metadata gets the meta data from atlas for a dataset, and merges them based on matching values
     such as data_attribute_qualified_name
@@ -67,7 +71,7 @@ def atlas_get_metadata_dataset():
     :return: metadata in a DataFrame
     """
 
-    fields_dataframe, attributes_dataframe, entities_dataframe, domains_dataframe = get_metadata_dataframes()
+    fields_dataframe, attributes_dataframe, entities_dataframe, domains_dataframe = await get_metadata_dataframes()
     metadata = pd.merge(fields_dataframe, attributes_dataframe, how="left", left_on="data_attribute_qualified_name",
                         right_index=True)
     metadata = pd.merge(metadata, entities_dataframe, how="left", left_on="data_entity_qualified_name",
