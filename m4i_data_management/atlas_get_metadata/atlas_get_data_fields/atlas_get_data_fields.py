@@ -30,7 +30,7 @@ async def atlas_create_data_fields_data_dictionary_representation(field_entity: 
     }
     if "attributes" in field_entity.attributes.unmapped_attributes and len(
         field_entity.attributes.unmapped_attributes['attributes']) > 0:
-        for field_attribute in field_entity["entity"]["attributes"]["attributes"]:
+        for field_attribute in field_entity.attributes.unmapped_attributes["attributes"]:
             rule_info_copy = rule_info.copy()
             rule_info_copy.update(
                 {'data_attribute_qualified_name': field_attribute["uniqueAttributes"]["qualifiedName"]})

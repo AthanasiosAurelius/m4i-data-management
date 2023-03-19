@@ -34,9 +34,10 @@ async def get_metadata_dataframes():
             fields_dataframe = fields_dataframe.append(
                await atlas_create_data_fields_data_dictionary_representation(field_entity))
 
-        for dataAttribute in field_entity["entity"]["attributes"]["attributes"]:
+        for dataAttribute in field_entity.attributes.unmapped_attributes["attributes"]:
             if dataAttribute["guid"] not in searched_guids:
-                dataAttribute_entity = get_entity_by_guid(dataAttribute["guid"])
+                #added token
+                dataAttribute_entity = await get_entity_by_guid(dataAttribute["guid"],access_token=access_token)
                 searched_guids.append(dataAttribute["guid"])
                 attributes_dataframe = attributes_dataframe.append(
                     atlas_create_data_attribute_data_dictionary_representation(dataAttribute_entity))

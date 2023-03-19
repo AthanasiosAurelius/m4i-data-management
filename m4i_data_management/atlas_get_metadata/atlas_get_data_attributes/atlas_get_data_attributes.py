@@ -28,11 +28,11 @@ def atlas_create_data_attribute_data_dictionary_representation(data_attribute_en
     """
     list_attributes = []
     rule_info = {
-        'data_attribute_name': data_attribute_entity["entity"]["attributes"]["name"],
-        'data_attribute_qualified_name': data_attribute_entity["entity"]["attributes"]["qualifiedName"]
+        'data_attribute_name': data_attribute_entity.attributes.unmapped_attributes["name"],
+        'data_attribute_qualified_name': data_attribute_entity.attributes.unmapped_attributes["qualifiedName"]
     }
-    if "businessOwner" in data_attribute_entity["entity"]["attributes"] and len(
-        data_attribute_entity["entity"]["attributes"]["businessOwner"]) > 0:
+    if "businessOwner" in data_attribute_entity.attributes.unmapped_attributes and len(
+        data_attribute_entity.attributes.unmapped_attributes ["businessOwner"]) > 0:
         rule_info.update({'data_attribute_owner':
                               data_attribute_entity["entity"]["attributes"]["businessOwner"][0]["uniqueAttributes"][
                                   "qualifiedName"]})
