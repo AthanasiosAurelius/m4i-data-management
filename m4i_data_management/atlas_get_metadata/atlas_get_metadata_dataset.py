@@ -27,10 +27,12 @@ async def get_metadata_dataframes():
     #fix get_entity_by_guid add token keycloak 
     for field in dataset_entity.attributes.unmapped_attributes["fields"]:
         if field["guid"] not in searched_guids:
-            field_entity = get_entity_by_guid(field["guid"])
+            #may have to add access token
+            access_token=get_keycloak_token()
+            field_entity = await get_entity_by_guid(field["guid"],access_token=access_token)
             searched_guids.append(field["guid"])
             fields_dataframe = fields_dataframe.append(
-                atlas_create_data_fields_data_dictionary_representation(field_entity))
+               await atlas_create_data_fields_data_dictionary_representation(field_entity))
 
         for dataAttribute in field_entity["entity"]["attributes"]["attributes"]:
             if dataAttribute["guid"] not in searched_guids:

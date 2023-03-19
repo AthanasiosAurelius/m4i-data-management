@@ -17,7 +17,7 @@ def atlas_get_data_fields_empty_dataframe():
 
 # END atlas_get_data_fields_empty_dataframe
 
-def atlas_create_data_fields_data_dictionary_representation(field_entity: dict):
+async def atlas_create_data_fields_data_dictionary_representation(field_entity: dict):
     """
     Create a data dictionary rows for the given data-field and each attribute it is associated with
     :param field_entity: The Json of the data-field entity
@@ -25,11 +25,11 @@ def atlas_create_data_fields_data_dictionary_representation(field_entity: dict):
     """
     list_fields = []
     rule_info = {
-        'data_field_name': field_entity["entity"]["attributes"]["name"],
-        'data_field_qualified_name': field_entity["entity"]["attributes"]["qualifiedName"]
+        'data_field_name': field_entity.attributes.unmapped_attributes["name"],
+        'data_field_qualified_name': field_entity.attributes.unmapped_attributes["qualifiedName"]
     }
-    if "attributes" in field_entity["entity"]["attributes"] and len(
-        field_entity["entity"]["attributes"]["attributes"]) > 0:
+    if "attributes" in field_entity.attributes.unmapped_attributes and len(
+        field_entity.attributes.unmapped_attributes['attributes']) > 0:
         for field_attribute in field_entity["entity"]["attributes"]["attributes"]:
             rule_info_copy = rule_info.copy()
             rule_info_copy.update(
