@@ -25,8 +25,8 @@ def atlas_create_data_domain_data_dictionary_representation(data_domain_entity: 
     """
     list_domains = []
     rule_info = {
-        'data_domain_name': data_domain_entity["entity"]["attributes"]["name"],
-        'data_domain_qualified_name': data_domain_entity["entity"]["attributes"]["qualifiedName"]
+        'data_domain_name': data_domain_entity.attributes.unmapped_attributes["name"],
+        'data_domain_qualified_name': data_domain_entity.attributes.unmapped_attributes["qualifiedName"]
     }
     list_domains.append(rule_info)
     return list_domains

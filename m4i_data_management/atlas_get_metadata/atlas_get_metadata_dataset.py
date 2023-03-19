@@ -42,16 +42,16 @@ async def get_metadata_dataframes():
                 attributes_dataframe = attributes_dataframe.append(
                     atlas_create_data_attribute_data_dictionary_representation(dataAttribute_entity))
 
-            for dataEntity in dataAttribute_entity["entity"]["attributes"]["dataEntity"]:
+            for dataEntity in dataAttribute_entity.attributes.unmapped_attributes["dataEntity"]:
                 if dataEntity["guid"] not in searched_guids:
-                    dataEntity_entity = get_entity_by_guid(dataEntity["guid"])
+                    dataEntity_entity =await get_entity_by_guid(dataEntity["guid"],access_token=access_token)
                     searched_guids.append(dataEntity["guid"])
                     entities_dataframe = entities_dataframe.append(
                         atlas_create_data_entities_data_dictionary_representation(dataEntity_entity))
 
-                for dataDomain in dataEntity_entity["entity"]["attributes"]["dataDomain"]:
+                for dataDomain in dataEntity_entity.attributes.unmapped_attributes["dataDomain"]:
                     if dataDomain["guid"] not in searched_guids:
-                        dataDomain_entity = get_entity_by_guid(dataDomain["guid"])
+                        dataDomain_entity = await get_entity_by_guid(dataDomain["guid"],access_token=access_token)
                         searched_guids.append(dataDomain["guid"])
                         domains_dataframe = domains_dataframe.append(
                             atlas_create_data_domain_data_dictionary_representation(dataDomain_entity))

@@ -25,13 +25,13 @@ def atlas_create_data_entities_data_dictionary_representation(data_entity_entity
     """
     list_entities = []
     rule_info = {
-        'data_entity_name': data_entity_entity["entity"]["attributes"]["name"],
-        'data_entity_qualified_name': data_entity_entity["entity"]["attributes"]["qualifiedName"]
+        'data_entity_name': data_entity_entity.attributes.unmapped_attributes["name"],
+        'data_entity_qualified_name': data_entity_entity.attributes.unmapped_attributes["qualifiedName"]
     }
-    if "dataDomain" in data_entity_entity["entity"]["attributes"] and len(
-        data_entity_entity["entity"]["attributes"]["dataDomain"]) > 0:
+    if "dataDomain" in data_entity_entity.attributes.unmapped_attributes and len(
+        data_entity_entity.attributes.unmapped_attributes["dataDomain"]) > 0:
         rule_info.update({'data_domain_qualified_name':
-                              data_entity_entity["entity"]["attributes"]["dataDomain"][0]["uniqueAttributes"][
+                              data_entity_entity.attributes.unmapped_attributes["dataDomain"][0]["uniqueAttributes"][
                                   "qualifiedName"]})
     list_entities.append(rule_info)
     return list_entities

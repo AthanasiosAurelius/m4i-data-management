@@ -34,18 +34,18 @@ def atlas_create_data_attribute_data_dictionary_representation(data_attribute_en
     if "businessOwner" in data_attribute_entity.attributes.unmapped_attributes and len(
         data_attribute_entity.attributes.unmapped_attributes ["businessOwner"]) > 0:
         rule_info.update({'data_attribute_owner':
-                              data_attribute_entity["entity"]["attributes"]["businessOwner"][0]["uniqueAttributes"][
+                              data_attribute_entity.attributes.unmapped_attributes["businessOwner"][0]["uniqueAttributes"][
                                   "qualifiedName"]})
-    if "steward" in data_attribute_entity["entity"]["attributes"] and len(
-        data_attribute_entity["entity"]["attributes"]["steward"]) > 0:
+    if "steward" in data_attribute_entity.attributes.unmapped_attributes and len(
+        data_attribute_entity.attributes.unmapped_attributes["steward"]) > 0:
         rule_info.update(
-            {'data_attribute_steward': data_attribute_entity["entity"]["attributes"]["steward"][0]["uniqueAttributes"][
+            {'data_attribute_steward': data_attribute_entity.attributes.unmapped_attributes["steward"][0]["uniqueAttributes"][
                 "qualifiedName"]})
 
-    if "dataEntity" in data_attribute_entity["entity"]["attributes"] and len(
-        data_attribute_entity["entity"]["attributes"]["dataEntity"]) > 0:
+    if "dataEntity" in data_attribute_entity.attributes.unmapped_attributes and len(
+        data_attribute_entity.attributes.unmapped_attributes["dataEntity"]) > 0:
         rule_info.update({'data_entity_qualified_name':
-                              data_attribute_entity["entity"]["attributes"]["dataEntity"][0]["uniqueAttributes"][
+                              data_attribute_entity.attributes.unmapped_attributes["dataEntity"][0]["uniqueAttributes"][
                                   "qualifiedName"]})
 
     list_attributes.append(rule_info)
