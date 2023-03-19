@@ -68,8 +68,8 @@ class Quality():
             f"Retrieved {len(metadata.index)} rows of metadata from the data dictionary"
         )
 
-        summary = annotate_results_with_metadata(summary, metadata)
-        compliant = annotate_results_with_metadata(compliant, metadata)
+        summary =  annotate_results_with_metadata(summary, metadata)
+        compliant =  annotate_results_with_metadata(compliant, metadata)
         non_compliant = annotate_results_with_metadata(non_compliant, metadata)
 
         log.info(

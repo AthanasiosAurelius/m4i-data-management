@@ -83,7 +83,12 @@ atlas_dataset_quality = Quality(
     propagate=write_data_quality_results
 )
 
+
 asyncio.run(atlas_dataset_quality.run())
+
+# async def run():
+#     run= await  atlas_dataset_quality.run()
+#     return run
 
 # data=pd.read_csv(r"C:\Users\Thana\OneDrive\Desktop\sample_csv\sample1.csv")
 #     ##data=data.set_index("id")
