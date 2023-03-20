@@ -74,7 +74,7 @@ config = {
     "keycloak.client.secret.key": ""
 
 
-In our credentials file we provide The server link of atlas,username,password and the keycloak username and password.
+## In our credentials file we provide The server link of atlas,username,password and the keycloak username and password.
 
 credentials = {
     
@@ -86,11 +86,19 @@ credentials = {
 }
 
 
-## Testing
+## How to use quality rules
 
-This project uses `pytest` as its unit testing framework.
-To run the unit tests, please install `pytest` and then execute the `pytest` command from the project root folder.
+Our tool checks the quality of your data. To use it, you need to provide a csv file with your data and the rules you want to apply to it. The rules are basically the type of checks you want to do on the attributes of your dataset. We store your data and rules on Atlas and use our tool to apply the rules to your data. We then calculate the quality score of your data based on the applied rules and provied a csv output with the results.
 
-Unit tests are grouped per module.
-Unit test modules are located in the same folder as their respective covered modules.
-They can be recognized by the `test__` module name prefix, followed by the name of the covered module.
+These are the steps on how to do it:
+    
+    1. First you have to push a dataset with the data quality rules you define and push it to atlas. This can be done using the m4_data_dictionary
+    repository. 
+
+    
+    2. In the run_quality_rules.py we can now run our check. We have to provide a dataset so we can do a quality check.
+
+    
+    3. Finally we run our check in the run_quality_rules.py
+
+
