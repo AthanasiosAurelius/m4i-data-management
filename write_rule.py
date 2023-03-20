@@ -83,7 +83,7 @@ atlas_dataset_quality = Quality(
     propagate=write_data_quality_results
 )
 
-
+ #propagate=write_data_quality_results.write_data_quality_results
 asyncio.run(atlas_dataset_quality.run())
 
 # async def run():

@@ -1,6 +1,6 @@
 import logging
 from typing import Callable
-
+import pandas as pd
 from pandas import DataFrame
 
 from .utils import annotate_results_with_metadata, evaluate_data_quality_rules
@@ -69,8 +69,28 @@ class Quality():
         )
 
         summary =  annotate_results_with_metadata(summary, metadata)
+       # print(summary)
         compliant =  annotate_results_with_metadata(compliant, metadata)
+       # print(compliant)
         non_compliant = annotate_results_with_metadata(non_compliant, metadata)
+        #print(non_compliant)
+
+        all_results= pd.concat([summary,compliant,non_compliant])
+        #all_results=compliant
+        #all_results=non_compliant
+        #all_results=pd.DataFrame(all_results)
+        # all_results=pd.DataFrame([{"summary": summary},
+        #           {"compliant": compliant},
+        #           {"non_compliant": non_compliant},]
+            
+        # )
+        #all_results.index = ['Row_1', 'Row_2']
+        all_results = pd.DataFrame(all_results)
+                  
+
+        save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
+        #.to_excel('jml/sf_ad_aad_sn/input/data_cleaning2/full_informal_name_special_char_location.xlsx')
+        print(all_results)
 
         log.info(
             f"Annotated {len(summary.index) + len(compliant.index) + len(non_compliant.index)} results with metadata from the data dictionary"
