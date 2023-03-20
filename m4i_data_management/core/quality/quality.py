@@ -76,32 +76,25 @@ class Quality():
         #print(non_compliant)
 
         all_results= pd.concat([summary,compliant,non_compliant])
-        #all_results=compliant
-        #all_results=non_compliant
-        #all_results=pd.DataFrame(all_results)
-        # all_results=pd.DataFrame([{"summary": summary},
-        #           {"compliant": compliant},
-        #           {"non_compliant": non_compliant},]
-            
-        # )
-        #all_results.index = ['Row_1', 'Row_2']
+        
         all_results = pd.DataFrame(all_results)
-                  
+        
+        #Made csv ouput of results.          
 
         save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
-        #.to_excel('jml/sf_ad_aad_sn/input/data_cleaning2/full_informal_name_special_char_location.xlsx')
-        print(all_results)
+        
+        # print(all_results)
+        #kafka part ,I commented out
+        # log.info(
+        #     f"Annotated {len(summary.index) + len(compliant.index) + len(non_compliant.index)} results with metadata from the data dictionary"
+        # )
 
-        log.info(
-            f"Annotated {len(summary.index) + len(compliant.index) + len(non_compliant.index)} results with metadata from the data dictionary"
-        )
+        # self.propagate(summary, compliant, non_compliant)
 
-        self.propagate(summary, compliant, non_compliant)
+        # log.info(
+        #     f"Propagated {len(summary.index)} data quality test summaries and {len(compliant.index) + len(non_compliant)} test details"
+        # )
 
-        log.info(
-            f"Propagated {len(summary.index)} data quality test summaries and {len(compliant.index) + len(non_compliant)} test details"
-        )
-
-        log.info(f"Finished running quality {self.name}")
+        # log.info(f"Finished running quality {self.name}")
     # END run
 # END Quality
