@@ -89,16 +89,11 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
 
 # END write_data_quality_results
 
-metadata= atlas_get_metadata_dataset()
 
-def data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
 
-        summary =  annotate_results_with_metadata(summary, metadata)
-        # print(summary)
-        compliant =  annotate_results_with_metadata(compliant, metadata)
-        # print(compliant)
-        non_compliant = annotate_results_with_metadata(non_compliant, metadata)
-        #print(non_compliant)
+def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+
+       
 
         all_results= pd.concat([summary,compliant,non_compliant])
         
@@ -106,7 +101,7 @@ def data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_
         
         #Made csv ouput of results.          
 
-        save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
+        save_results=all_results.to_csv(r"output.csv", index=False)
 
         return all_results
     

@@ -83,7 +83,7 @@ atlas_dataset_quality = Quality(
     get_data=get_data_csv,
     get_metadata=atlas_get_metadata.atlas_get_metadata_dataset,
     get_rules=atlas_get_quality_rules.atlas_get_quality_rules_dataset,
-    propagate= write_data_quality_results.data_quality_results_csv_file
+    propagate= write_data_quality_results.write_data_quality_results_csv_file
 )
 
  #propagate=write_data_quality_results.write_data_quality_results

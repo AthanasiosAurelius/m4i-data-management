@@ -76,26 +76,26 @@ class Quality():
         non_compliant = annotate_results_with_metadata(non_compliant, metadata)
         #print(non_compliant)
 
-        all_results= pd.concat([summary,compliant,non_compliant])
+        # all_results= pd.concat([summary,compliant,non_compliant])
         
-        all_results = pd.DataFrame(all_results)
+        # all_results = pd.DataFrame(all_results)
         
        #Made csv ouput of results.          
 
-        save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
+        #save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
         
-        print(all_results)
-        #kafka part ,I commented out
+        # print(all_results)
+        # #kafka part ,I commented out
         log.info(
             f"Annotated {len(summary.index) + len(compliant.index) + len(non_compliant.index)} results with metadata from the data dictionary"
         )
 
         self.propagate(summary, compliant, non_compliant)
 
-        # log.info(
-        #     f"Propagated {len(summary.index)} data quality test summaries and {len(compliant.index) + len(non_compliant)} test details"
-        # )
+        log.info(
+            f"Propagated {len(summary.index)} data quality test summaries and {len(compliant.index) + len(non_compliant)} test details"
+        )
 
-        # log.info(f"Finished running quality {self.name}")
+        log.info(f"Finished running quality {self.name}")
     # END run
 # END Quality
