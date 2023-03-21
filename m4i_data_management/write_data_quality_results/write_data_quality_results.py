@@ -12,7 +12,7 @@ from m4i_data_management import write_data_quality_results
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()
 from m4i_data_management.core.quality.utils import annotate_results_with_metadata,evaluate_data_quality_rules
-
+from m4i_data_management.atlas_get_metadata import *
 
 
 
@@ -89,9 +89,9 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
 
 # END write_data_quality_results
 
+metadata= atlas_get_metadata_dataset()
 
-
-def data_quality_results_csv_file(results: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+def data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
 
         summary =  annotate_results_with_metadata(summary, metadata)
         # print(summary)
