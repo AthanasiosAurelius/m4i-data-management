@@ -34,7 +34,7 @@ store.load({**config, **credentials})
 
 #use relative path
 def get_data_csv()->DataFrame:
-    # cwd = os.getcwd()
+    ## cwd = os.getcwd()
     # rel_path = "m4i_data_management\sample_csv\sample_data.csv"
     # abs_path = os.path.join(cwd, rel_path)
     # data = pd.read_csv(abs_path, sep=";")
