@@ -102,6 +102,7 @@ These are the steps on how to do it:
     2. In the run_quality_rules.py we can now run our check. We have to provide a dataset so we can do a quality check.
 
     
-    3. Finally we run our check in the run_quality_rules.py
+    3. Finally we run our check in the run_quality_rules.py In debug mode run the 'asyncio.run(atlas_dataset_quality.run())' it's on line 87
+
 
 

@@ -11,7 +11,7 @@ from m4i_data_management import propagate_change_events
 from m4i_data_management import write_data_quality_results
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()
-
+from m4i_data_management.core.quality.utils import annotate_results_with_metadata,evaluate_data_quality_rules
 
 
 
@@ -88,3 +88,25 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
     details_producer.flush()
 
 # END write_data_quality_results
+
+
+
+def data_quality_results_csv_file(results: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+
+        summary =  annotate_results_with_metadata(summary, metadata)
+        # print(summary)
+        compliant =  annotate_results_with_metadata(compliant, metadata)
+        # print(compliant)
+        non_compliant = annotate_results_with_metadata(non_compliant, metadata)
+        #print(non_compliant)
+
+        all_results= pd.concat([summary,compliant,non_compliant])
+        
+        all_results = pd.DataFrame(all_results)
+        
+        #Made csv ouput of results.          
+
+        save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
+
+        return all_results
+    
