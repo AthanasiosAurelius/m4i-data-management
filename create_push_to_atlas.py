@@ -63,7 +63,17 @@ async def make_entities(atlas_entities, with_referred_entities,access_token=acce
 
 #push to atlas
 
-    
+from m4i_atlas_core import create_entities, get_all_referred_entities
+
+
+async def get_ref_and_push(atlas_entities, with_referred_entities,access_token: Optional[str] = None):
+    referred_entities = await get_all_referred_entities(
+        atlas_entities
+    ) if with_referred_entities else None
+
+    mutation_response = await create_entities(*atlas_entities, referred_entities=referred_entities,access_token=access_token)
+    print(mutation_response)
+   
 
 
 
