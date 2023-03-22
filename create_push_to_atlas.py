@@ -3,8 +3,13 @@
 import json
 from m4i_atlas_core import BusinessDataDomain,BusinessDataset,BusinessField,BusinessDataQuality
 from m4i_atlas_core import get_keycloak_token
+from m4i_atlas_core import ConfigStore
+from config import config
+from credentials import credentials
 
-
+#Load config credentials                                
+store = ConfigStore.get_instance()
+store.load({**config, **credentials})
 
 #make entity
 json_data={
@@ -32,15 +37,15 @@ quality_instance = BusinessDataQuality.from_json(json_str)
 
 from m4i_atlas_core import Entity, create_entities
 
-async def create_entity():
-    entity1 = Entity(...)
-    entity2 = Entity(...)
+# async def create_entity():
+#     entity1 = Entity(...)
+#     entity2 = Entity(...)
 
-    mutations = await create_entities(entity1, entity2)
+#     mutations = await create_entities(entity1, entity2)
 
-    print(mutations)
+#     print(mutations)
 
-    return mutations
+#     return mutations
 
 #Create entitties
 access_token=get_keycloak_token()
@@ -48,12 +53,12 @@ access_token=get_keycloak_token()
 async def make_entities(atlas_entities, with_referred_entities,access_token=access_token):
    
 
-    mutation_response = await create_entities(quality_instance.convert_to_atlas(),access_token=access_token)
+    mutation_response1 = await create_entities(quality_instance.convert_to_atlas(),access_token=access_token)
 
-    mutation_response = await create_entities(dataset_instance.convert_to_atlas(),access_token=access_token)
+    mutation_response2 = await create_entities(dataset_instance.convert_to_atlas(),access_token=access_token)
 
-    mutation_response = await create_entities(field_instance.convert_to_atlas(),access_token=access_token)
-
+    mutation_response3 = await create_entities(field_instance.convert_to_atlas(),access_token=access_token)
+    return mutation_response1,mutation_response2,mutation_response3
 
 
 #push to atlas
