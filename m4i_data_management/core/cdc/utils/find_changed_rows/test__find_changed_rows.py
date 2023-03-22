@@ -34,8 +34,6 @@ def new_data():
 # END new_data
 
 
-
-
 def test__find_changed_rows_finds_mutations(old_data: DataFrame, new_data: DataFrame):
     mutations = list(find_changed_rows(old_data, new_data, Series.equals))
 

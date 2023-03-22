@@ -60,5 +60,3 @@ def quality():
         propagate=propagate
     )
 # END quality
-
-

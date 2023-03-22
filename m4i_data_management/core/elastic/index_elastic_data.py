@@ -18,12 +18,13 @@ def index_elastic_data(data: DataFrame, index: str):
     try:
         for id, row in data.iterrows():
             body = row.to_dict()
-            print(body)
+
             response = elastic.index(
                 index=index,
                 id=str(id),
                 body=body
             )
+
             log.debug(response)
         # END LOOP
     except Exception as e:
