@@ -6,6 +6,7 @@ from m4i_atlas_core import get_keycloak_token
 from m4i_atlas_core import ConfigStore
 from config import config
 from credentials import credentials
+from m4i_data_management.ToAtlasConvertible import ToAtlasConvertible
 
 #Load config credentials                                
 store = ConfigStore.get_instance()
@@ -47,18 +48,29 @@ from m4i_atlas_core import Entity, create_entities
 
 #     return mutations
 
+
 #Create entitties
 access_token=get_keycloak_token()
 
-async def make_entities(atlas_entities, with_referred_entities,access_token=access_token):
+mutation_response1 = create_entities(ToAtlasConvertible.convert_to_atlas(quality_instance),access_token=access_token)
+
+mutation_response2 = create_entities(ToAtlasConvertible.convert_to_atlas(field_instance),access_token=access_token)
+
+mutation_response3 = create_entities(ToAtlasConvertible.convert_to_atlas(dataset_instance),access_token=access_token)
+
+async def make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token):
    
+    access_token=access_token
+    mutation_response1 = await mutation_response1
 
-    mutation_response1 = await create_entities(quality_instance.convert_to_atlas(),access_token=access_token)
+    mutation_response2 = await mutation_response2
 
-    mutation_response2 = await create_entities(dataset_instance.convert_to_atlas(),access_token=access_token)
-
-    mutation_response3 = await create_entities(field_instance.convert_to_atlas(),access_token=access_token)
+    mutation_response3 = await mutation_response3
+    
     return mutation_response1,mutation_response2,mutation_response3
+
+
+print(make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token))
 
 
 #push to atlas
