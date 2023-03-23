@@ -54,23 +54,23 @@ access_token=get_keycloak_token()
 
 mutation_response1 = create_entities(ToAtlasConvertible.convert_to_atlas(quality_instance),access_token=access_token)
 
-mutation_response2 = create_entities(ToAtlasConvertible.convert_to_atlas(field_instance),access_token=access_token)
+# mutation_response2 = create_entities(ToAtlasConvertible.convert_to_atlas(field_instance),access_token=access_token)
 
-mutation_response3 = create_entities(ToAtlasConvertible.convert_to_atlas(dataset_instance),access_token=access_token)
+# mutation_response3 = create_entities(ToAtlasConvertible.convert_to_atlas(dataset_instance),access_token=access_token)
 
-async def make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token):
+# async def make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token):
    
-    access_token=access_token
-    mutation_response1 = await mutation_response1
+#     access_token=access_token
+#     mutation_response1 = await mutation_response1
 
-    mutation_response2 = await mutation_response2
+#     mutation_response2 = await mutation_response2
 
-    mutation_response3 = await mutation_response3
+#     mutation_response3 = await mutation_response3
     
-    return mutation_response1,mutation_response2,mutation_response3
+#     return mutation_response1,mutation_response2,mutation_response3
 
 
-print(make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token))
+# print(make_entities(mutation_response1,mutation_response2,mutation_response3,access_token=access_token))
 
 
 #push to atlas
@@ -78,12 +78,12 @@ print(make_entities(mutation_response1,mutation_response2,mutation_response3,acc
 from m4i_atlas_core import create_entities, get_all_referred_entities
 
 
-async def get_ref_and_push(atlas_entities, with_referred_entities,access_token: Optional[str] = None):
+async def get_ref_and_push(mutation_response1, with_referred_entities,access_token=access_token):
     referred_entities = await get_all_referred_entities(
-        atlas_entities
+        mutation_response1
     ) if with_referred_entities else None
 
-    mutation_response = await create_entities(*atlas_entities, referred_entities=referred_entities,access_token=access_token)
+    mutation_response = await create_entities(mutation_response1, referred_entities=referred_entities,access_token=access_token)
     print(mutation_response)
    
 
