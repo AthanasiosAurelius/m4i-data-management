@@ -33,33 +33,24 @@ async def get_ref_and_push(atlas_entities,access_token=access_token):
         print(mutation_response)
 
 
-
-def main():
-    # Load config
    
 #We want only field, dataset,quality, maybe use input, user gets to choose what he wants to create
-    atlas_entity_types = {
-        
-        "m4i_field": BusinessField,
-        #"m4i_dataset": BusinessDataset,
-        #"m4i_data_quality": BusinessDataQuality
-    }
+        atlas_entity_types = {
+            
+            "m4i_field": BusinessField,
+            #"m4i_dataset": BusinessDataset,
+            #"m4i_data_quality": BusinessDataQuality
+        }
 
-    # Register entity types
-    register_atlas_entity_types(atlas_entity_types)
-    access_token=get_keycloak_token()
-    #access_token=store.get("atlas.token")
-    #print(access_token)
-    return asyncio.run(create_entities(atlas_entity_types,access_token=access_token))
-
-
-
-# END main
+        # Register entity types
+        register_atlas_entity_types(atlas_entity_types)
+        access_token=get_keycloak_token()
+        #access_token=store.get("atlas.token")
+        #print(access_token)
+        return asyncio.run(create_entities(atlas_entity_types,access_token=access_token))
 
 
-if __name__ == "__main__":
-    main()
-# END IF
+
 
 
 #here you can choose what entity you want
