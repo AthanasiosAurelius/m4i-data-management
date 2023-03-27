@@ -103,8 +103,8 @@ def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame
 
         save_results=all_results.to_csv(r"output.csv", index=False)
 
-        broker = 'localhost:9092'
-        topic = 'test-topic'
+        broker = 'localhost:9091'
+        topic = 'data_quality'
         message_producer = MessageProducer(broker,topic)
 
 
