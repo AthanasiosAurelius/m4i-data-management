@@ -60,6 +60,10 @@ asyncio.run(atlas_dataset_quality.run())
 
 
 
+#send to kafka topic
+
+
+
 
 
 
