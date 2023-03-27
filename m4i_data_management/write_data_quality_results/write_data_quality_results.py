@@ -103,26 +103,6 @@ def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame
 
         save_results=all_results.to_csv(r"output.csv", index=False)
 
-        # broker = 'localhost:9092'
-        # topic = 'test-topic'
-        # producer = KafkaProducer(bootstrap_servers=broker,
-        # value_serializer=lambda v: json.dumps(v).encode('utf-8'),
-        # acks='all',
-        # retries = 3)
-
-        # future =producer.send(topic,all_results)
-        # producer.flush()
-        # future.get(timeout=60)
-
-        # broker = 'localhost:9092'
-        # topic = 'test-topic'
-        # #message_producer = MessageProducer(broker,topic)
-
-
-        # data = all_results
-        # resp = message_producer.send_msg(data)
-        # print(resp)
-
         broker = 'localhost:9092'
         topic = 'test-topic'
         message_producer = MessageProducer(broker,topic)
@@ -170,14 +150,14 @@ class MessageProducer:
             return ex
 
 
-broker = 'localhost:9092'
-topic = 'test-topic'
-message_producer = MessageProducer(broker,topic)
+# broker = 'localhost:9092'
+# topic = 'test-topic'
+# message_producer = MessageProducer(broker,topic)
 
 
-data = {'name':'abc', 'email':'abc@example.com'}
-resp = message_producer.send_msg(data)
-print(resp)
+# data = {'name':'abc', 'email':'abc@example.com'}
+# resp = message_producer.send_msg(data)
+# print(resp)
 
 
 
