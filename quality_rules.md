@@ -94,6 +94,8 @@ credentials = {
 Our tool checks the quality of your data. To use it, you need to provide a csv file with your data and the rules you want to apply to it. The rules are basically the type of checks you want to do on the attributes of your dataset. We store your data and rules on Atlas and use our tool to apply the rules to your data. We then calculate the quality score of your data based on the applied rules and provied a csv output with the results.
 
 These are the steps on how to do it:
+
+    1. Use command change directory cd m4i-data-management
     
     1. First you have to push a dataset with the data quality rules you define and push it to atlas. This can be done using the m4_data_dictionary
     repository. 
@@ -103,6 +105,8 @@ These are the steps on how to do it:
 
     
     3. Finally we run our check in the run_quality_rules.py In debug mode run the 'asyncio.run(atlas_dataset_quality.run())' it's on line 87
+
+    
 
 
 

@@ -114,8 +114,8 @@ def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame
 
         data = all_results
         #data = data.reset_index()
-        data = data.to_dict(orient='records')
-        data_json = json.dumps(data)
+        data = data.to_dict()
+        data = json.dumps(data)
         
         resp = message_producer.send_msg(data)
         print(resp)
