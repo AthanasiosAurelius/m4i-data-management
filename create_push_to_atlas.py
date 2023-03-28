@@ -15,6 +15,7 @@ from m4i_atlas_core import (ConfigStore, register_atlas_entity_types,
                             BusinessDataset, BusinessCollection, BusinessSystem, BusinessDataQuality, get_keycloak_token )
 from m4i_data_management.ExcelParserConfig import *
 import uuid
+from m4i_atlas_core.entities import EntitiesWithExtInfo
 
 from config import config
 
@@ -38,7 +39,7 @@ json_dataset={
         "name": "example",
         "qualifiedName": "example"
       },
-      "guid": str(uuid.uuid4()),
+     # "guid": str(uuid.uuid4()),
       "typeName": "m4i_dataset"
     }
 
@@ -48,7 +49,7 @@ json_field={
         "name": "field",
         "qualifiedName": "example--field"
       },
-      "guid": str(uuid.uuid4()),
+     # "guid": str(uuid.uuid4()),
       "typeName": "m4i_field"
     }
 
@@ -58,7 +59,7 @@ json_quality={
         "name": "field",
         "qualifiedName": "example--quality"
       },
-      "guid": str(uuid.uuid4()),
+     # "guid": str(uuid.uuid4()),
       "typeName": "m4i_data_quality"
     }
 
@@ -75,15 +76,30 @@ dataset_instance = BusinessDataset.from_json(json_str)
 
 
 
+    
+
+
+
 
 from m4i_atlas_core import Entity, create_entities
 
 async def create_in_atlas(instance,access_token=access_token):
-    
+    referred_entities=None
+    if referred_entities is None:
+        referred_entities = {}
+    entities_with_ext_info = EntitiesWithExtInfo(
+        entities=list([instance]),
+        referred_entities=referred_entities
+    )
+    body=entities_with_ext_info.to_json()
 
-    mutations = await create_entities(instance,access_token=access_token)
+    #this function works for two and up
+
+    mutations = await create_entities(instance,instance,referred_entities=None,access_token=access_token)
 
     print(mutations)
+
+
 
 
 push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_token))

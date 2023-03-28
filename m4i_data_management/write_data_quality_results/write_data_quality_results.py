@@ -91,39 +91,57 @@ def write_data_quality_results(results: DataFrame, compliant: DataFrame, non_com
 
 
 
-def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+# def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
 
        
 
-        all_results= pd.concat([summary,compliant,non_compliant])
+#         all_results= pd.concat([summary,compliant,non_compliant])
         
-        all_results = pd.DataFrame(all_results).reset_index()
-        print(all_results.columns)
-        #all_results= all_results.drop(columns=['run_id','result_id'])
+#         all_results = pd.DataFrame(all_results).reset_index()
+#         print(all_results.columns)
+#         #all_results= all_results.drop(columns=['run_id','result_id'])
 
-        #all_results = all_results.to_json(orient='columns', encoding='iso-8859-1').encode('utf-8')
+#         #all_results = all_results.to_json(orient='columns', encoding='iso-8859-1').encode('utf-8')
         
-        #Made csv ouput of results.          
+#         #Made csv ouput of results.          
 
-        save_results=all_results.to_csv(r"output.csv", index=False)
+#         save_results=all_results.to_csv(r"output.csv", index=False)
 
-        broker = 'localhost:9092'
-        topic = 'data_quality'
-        message_producer = MessageProducer(broker,topic)
+#         broker = 'localhost:9092'
+#         topic = 'data_quality'
+#         message_producer = MessageProducer(broker,topic)
 
 
-        data = all_results
-        #data = data.reset_index()
-        data = data.to_dict()
-        data = json.dumps(data)
+#         data = all_results
+#         #data = data.reset_index()
+#         data = data.to_dict()
+#         data = json.dumps(data)
         
-        resp = message_producer.send_msg(data)
-        print(resp)
+#         resp = message_producer.send_msg(data)
+#         print(resp)
 
 
 
 
-        return all_results
+ #       return all_results
+
+
+def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+    all_results= pd.concat([summary,compliant,non_compliant])
+    all_results = pd.DataFrame(all_results).reset_index()
+    save_results=all_results.to_csv(r"output.csv", index=False)
+    return save_results
+
+
+def send_data_to_kafka_broker(summary: DataFrame, compliant: DataFrame, non_compliant: DataFrame):
+    broker = 'localhost:9092'
+    topic = 'data_quality'
+    data= pd.concat([summary,compliant,non_compliant])
+    message_producer = MessageProducer(broker,topic)
+    data = data.to_dict()
+    data = json.dumps(data)
+    resp = message_producer.send_msg(data)
+    return resp
 
 
 
