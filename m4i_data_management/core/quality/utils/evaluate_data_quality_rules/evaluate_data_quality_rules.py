@@ -35,7 +35,7 @@ def evaluate_data_quality_rules(data: DataFrame, rules: DataFrame) -> DataFrame:
         # END LOOP
     # END run_checks
 
-    run_id = uuid()
+    run_id = str(uuid())
     run_date = datetime.now().isoformat()
 
     summaries = DataFrame()

@@ -39,7 +39,7 @@ def run_quality_check(data: DataFrame, rule: Series) -> Tuple[dict, DataFrame, D
     data_field_qualified_name = rule['data_field_qualified_name']
     data_quality_rule_description = rule['data_quality_rule_description']
     data_quality_rule_dimension = rule['data_quality_rule_dimension']
-    result_id = uuid()
+    result_id = str(uuid())
     rule_expression = rule['expression']
     test_date = datetime.now().isoformat()
 
