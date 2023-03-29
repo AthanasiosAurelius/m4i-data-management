@@ -20,6 +20,9 @@ from m4i_atlas_core import create_entities, get_all_referred_entities
 from aiohttp import ClientResponseError
 from m4i_data_dictionary_io.functions.parse_json_to_atlas_entities import parse_json_to_atlas_entities
 from m4i_data_dictionary_io import (create_from_excel, excel_parser_configs)
+from m4i_atlas_core import ObjectId, BusinessField, BusinessFieldAttributes
+
+from m4i_atlas_core import M4IAttributes
 
 
 
@@ -43,7 +46,7 @@ access_token=get_keycloak_token()
 json_dataset={
       "attributes": {
         "name": "example",
-        "qualifiedName": "example"
+        "qualifiedName": "example100"
       },
      #"guid": str(uuid.uuid4()),
       "typeName": "m4i_dataset"
@@ -56,8 +59,10 @@ json_field={
         "qualifiedName": "example--field"
       },
       #"guid": str(uuid.uuid4()),
-      "typeName": "m4i_field"
+      "typeName": "m4i_field",
+      
     }
+
 
 
 json_quality={
@@ -95,6 +100,13 @@ dataset_instance = BusinessDataset.from_json(json_str)
 json_str1 = json.dumps(json_field)
 
 field_instance= BusinessField.from_json(json_str1)
+field_instance.datasets= ObjectId(
+            type_name="m4i_dataset",
+            unique_attributes= M4IAttributes(
+            qualified_name="example100"
+        )
+        )
+
 #field_instance.relationship_attributes.values
 
 json_str2 = json.dumps(json_quality)
@@ -193,114 +205,123 @@ push_rule = asyncio.run(create_in_atlas_rule(quality_instance,access_token=acces
 
 #How to make relationships
 
-async def get_ref_and_push(atlas_entities, with_referred_entities,access_token=access_token):
-    referred_entities = await get_all_referred_entities(
-        atlas_entities
-    ) if with_referred_entities else None
+# async def get_ref_and_push(atlas_entities, with_referred_entities,access_token=access_token):
+#     referred_entities = await get_all_referred_entities(
+#         atlas_entities
+#     ) if with_referred_entities else None
 
-    mutation_response = await create_entities(*atlas_entities, referred_entities=referred_entities,access_token=access_token)
-    print(mutation_response)
+#     mutation_response = await create_entities(*atlas_entities, referred_entities=referred_entities,access_token=access_token)
+#     print(mutation_response)
 
-
-
-
-
-
-async def create_from_excel(
-        *parser_configs: ExcelParserConfig,
-        with_referred_entities: bool = False,
-        access_token: access_token
-):
-
-    data = map(read_data_from_dictionary, parser_configs)
-
-    atlas_entities_per_sheet = [dataset_instance,field_instance
+# atlas_entities_per_sheet = [dataset_instance,field_instance,quality_instance]
        
-    ]
+# for sheet_entities in atlas_entities_per_sheet:
+#   atlas_entities = list(sheet_entities)    
 
-    # Add Source Entity to Excel
-    # source_data, source_type = get_source()
-    # instance = source_type.from_dict(source_data)
+#   result=get_ref_and_push(atlas_entities)
 
-    #mutation_response = await create_entities(instance.convert_to_atlas(),access_token=access_token)
+#   print(result)
 
-    # print(mutation_response)
 
-    # atlas_entities_per_sheet.append(parse_json_to_atlas_entities(source_data, source_type))
 
-    for sheet_entities in atlas_entities_per_sheet:
-        atlas_entities = list(sheet_entities)
 
-        if len(atlas_entities) > 0:
-            try:
-                await get_ref_and_push(atlas_entities, with_referred_entities,access_token=access_token)
-            except ClientResponseError:
-                for i in atlas_entities:
-                    await get_ref_and_push([i], with_referred_entities,access_token=access_token)
+
+
+# async def create_from_excel(
+#         *parser_configs: ExcelParserConfig,
+#         with_referred_entities: bool = False,
+#         access_token: access_token
+# ):
+
+#     #data = map(read_data_from_dictionary, parser_configs)
+#     ##added entities here
+#     atlas_entities_per_sheet = [dataset_instance,field_instance,quality_instance
+       
+#     ]
+
+#     # Add Source Entity to Excel
+#     # source_data, source_type = get_source()
+#     # instance = source_type.from_dict(source_data)
+
+#     #mutation_response = await create_entities(instance.convert_to_atlas(),access_token=access_token)
+
+#     # print(mutation_response)
+
+#     # atlas_entities_per_sheet.append(parse_json_to_atlas_entities(source_data, source_type))
+
+#     for sheet_entities in atlas_entities_per_sheet:
+#         atlas_entities = list(sheet_entities)
+
+#         if len(atlas_entities) > 0:
+#             try:
+#                 await get_ref_and_push(atlas_entities, with_referred_entities,access_token=access_token)
+#             except ClientResponseError:
+#                 for i in atlas_entities:
+#                     await get_ref_and_push([i], with_referred_entities,access_token=access_token)
 
 
 
     
 
-    def main():
-    # Load config
-      store = ConfigStore.get_instance()
-      store.load({**config, **credentials})
+#     def main():
+#     # Load config
+#       store = ConfigStore.get_instance()
+#       store.load({**config, **credentials})
 
-      atlas_entity_types = {
+#       atlas_entity_types = {
          
         
-          "m4i_field": BusinessField,
-          "m4i_dataset": BusinessDataset,
-          "m4i_data_quality": BusinessDataQuality
-      }
+#           "m4i_field": BusinessField,
+#           "m4i_dataset": BusinessDataset,
+#           "m4i_data_quality": BusinessDataQuality
+#       }
 
-      # Register entity types
-      register_atlas_entity_types(atlas_entity_types)
-      access_token=get_keycloak_token()
-      #access_token=store.get("atlas.token")
-      #print(access_token)
-      return asyncio.run(create_from_excel(*excel_parser_configs,access_token=access_token))
+#       # Register entity types
+#       register_atlas_entity_types(atlas_entity_types)
+#       access_token=get_keycloak_token()
+#       #access_token=store.get("atlas.token")
+#       #print(access_token)
+#       return asyncio.run(create_from_excel(*excel_parser_configs,access_token=access_token))
 
 
   
 
 
-    if __name__ == "__main__":
-        main()
+#     if __name__ == "__main__":
+#         main()
 
 
 
 
-from typing import Iterable
+# from typing import Iterable
 
-from m4i_atlas_core import ConfigStore
-from pandas import DataFrame, read_excel
+# from m4i_atlas_core import ConfigStore
+# from pandas import DataFrame, read_excel
 
-from m4i_atlas_core import ExcelParserConfig
+# from m4i_data_dictionary_io import ExcelParserConfig
 
-store = ConfigStore.get_instance()
+# store = ConfigStore.get_instance()
 
-#read entites
-def read_data_from_dictionary(config: ExcelParserConfig) -> Iterable[dict]:
+# #read entites
+# def read_data_from_dictionary(config: ExcelParserConfig) -> Iterable[dict]:
 
-    data_path = store.get("data.dictionary.path")
+#     data_path = store.get("data.dictionary.path")
 
-    sheet: DataFrame = read_excel(
-        data_path,
-        sheet_name=config.sheet_name,
-        usecols=config.column_mapping,
-        keep_default_na=False,
-    )
+#     sheet: DataFrame = read_excel(
+#         data_path,
+#         sheet_name=config.sheet_name,
+#         usecols=config.column_mapping,
+#         keep_default_na=False,
+#     )
 
-    data: DataFrame = (
-        sheet
-        .pipe(DataFrame.rename, columns=config.column_mapping)
-        .pipe(config.transform)
-    )
+#     data: DataFrame = (
+#         sheet
+#         .pipe(DataFrame.rename, columns=config.column_mapping)
+#         .pipe(config.transform)
+#     )
 
-    return data.to_dict(orient="records")
-# END read_data_from_dictionary
+#     return data.to_dict(orient="records")
+# # END read_data_from_dictionary
     
 
 
