@@ -57,7 +57,7 @@ atlas_dataset_quality = Quality(
 )
 
  
-asyncio.run(atlas_dataset_quality.run())
+asyncio.run(atlas_dataset_quality.run()) 
 
 
 

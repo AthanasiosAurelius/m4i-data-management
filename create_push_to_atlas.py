@@ -143,14 +143,14 @@ quality_instance = BusinessDataQuality.from_json(json_str2)
 from m4i_atlas_core import Entity, create_entities
 
 async def create_in_atlas(dataset,access_token=access_token):
-    referred_entities=None
-    if referred_entities is None:
-        referred_entities = {}
-    entities_with_ext_info = EntitiesWithExtInfo(
-        entities=list([dataset]),
-        referred_entities=referred_entities
-    )
-    body=entities_with_ext_info.to_json()
+    # referred_entities=None
+    # if referred_entities is None:
+    #     referred_entities = {}
+    # entities_with_ext_info = EntitiesWithExtInfo(
+    #     entities=list([dataset]),
+    #     referred_entities=referred_entities
+    # )
+    # body=entities_with_ext_info.to_json()
 
     #this function works for two and up
 
@@ -169,14 +169,14 @@ push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_
 #push_rule= asyncio.run(create_in_atlas(quality_instance,access_token=access_token))
 
 async def create_in_atlas_field(field,access_token=access_token):
-    referred_entities=None
-    if referred_entities is None:
-        referred_entities = {}
-    entities_with_ext_info = EntitiesWithExtInfo(
-        entities=list([field]),
-        referred_entities=referred_entities
-    )
-    body=entities_with_ext_info.to_json()
+    # referred_entities=None
+    # if referred_entities is None:
+    #     referred_entities = {}
+    # entities_with_ext_info = EntitiesWithExtInfo(
+    #     entities=list([field]),
+    #     referred_entities=referred_entities
+    # )
+    # body=entities_with_ext_info.to_json()
 
     #this function works for two and up
 
@@ -192,14 +192,14 @@ push_field = asyncio.run(create_in_atlas_field(field_instance,access_token=acces
 
 
 async def create_in_atlas_rule(rule,access_token=access_token):
-    referred_entities=None
-    if referred_entities is None:
-        referred_entities = {}
-    entities_with_ext_info = EntitiesWithExtInfo(
-        entities=list([rule]),
-        referred_entities=referred_entities
-    )
-    body=entities_with_ext_info.to_json()
+    # referred_entities=None
+    # if referred_entities is None:
+    #     referred_entities = {}
+    # entities_with_ext_info = EntitiesWithExtInfo(
+    #     entities=list([rule]),
+    #     referred_entities=referred_entities
+    # )
+    # body=entities_with_ext_info.to_json()
 
     #this function works for two and up
 
@@ -231,7 +231,7 @@ all_entities=[dataset_instance,field_instance,quality_instance]
 async def get_ref_and_push(all_entities,access_token=access_token):
     
     for i in all_entities:
-      relationships=await get_referred_entities(i)
+      relationships= await get_referred_entities(i)
 
       mutation_response = await create_entities(all_entities, referred_entities=relationships,access_token=access_token)
       print(mutation_response)
