@@ -9,7 +9,7 @@ from credentials import credentials
 from m4i_data_management.ToAtlasConvertible import ToAtlasConvertible
 from m4i_atlas_core import Entity, create_entities
 import asyncio
-from m4i_atlas_core import create_entities, get_all_referred_entities
+from m4i_atlas_core import create_entities, get_all_referred_entities,get_referred_entities
 from m4i_atlas_core import (ConfigStore, register_atlas_entity_types,
                             AtlasPerson, BusinessDataDomain, BusinessDataEntity, BusinessDataAttribute, BusinessField,
                             BusinessDataset, BusinessCollection, BusinessSystem, BusinessDataQuality, get_keycloak_token )
@@ -53,6 +53,17 @@ json_dataset={
     }
 
 #eventually i have to add relationships dataset with field
+# json_field={
+#       "attributes": {
+#         "name": "field",
+#         "qualifiedName": "example--field"
+#       },
+#       #"guid": str(uuid.uuid4()),
+#       "typeName": "m4i_field",
+      
+#     }
+
+
 json_field={
       "attributes": {
         "name": "field",
@@ -60,8 +71,14 @@ json_field={
       },
       #"guid": str(uuid.uuid4()),
       "typeName": "m4i_field",
-      
-    }
+      "relationshipAttributes": {
+          "dataset": {
+              "guid": "<guid-of-json_dataset>",
+              "typeName": "m4i_dataset",
+              "relationshipType": "m4i_dataset_fields"
+          }
+      }
+}
 
 
 
@@ -100,12 +117,12 @@ dataset_instance = BusinessDataset.from_json(json_str)
 json_str1 = json.dumps(json_field)
 
 field_instance= BusinessField.from_json(json_str1)
-field_instance.datasets= ObjectId(
-            type_name="m4i_dataset",
-            unique_attributes= M4IAttributes(
-            qualified_name="example100"
-        )
-        )
+# field_instance.datasets= ObjectId(
+#             type_name="m4i_dataset",
+#             unique_attributes= M4IAttributes(
+#             qualified_name="example100"
+#         )
+#         )
 
 #field_instance.relationship_attributes.values
 
@@ -201,6 +218,43 @@ async def create_in_atlas_rule(rule,access_token=access_token):
 
 
 push_rule = asyncio.run(create_in_atlas_rule(quality_instance,access_token=access_token))
+
+
+
+#I'm trying to make a relations
+
+all_entities=[dataset_instance,field_instance,quality_instance]
+
+#relationships=get_referred_entities(all_entities)
+
+
+async def get_ref_and_push(all_entities,access_token=access_token):
+    
+    for i in all_entities:
+      relationships=await get_referred_entities(i)
+
+      mutation_response = await create_entities(all_entities, referred_entities=relationships,access_token=access_token)
+      print(mutation_response)
+
+
+entities_with_relationships = asyncio.run(get_ref_and_push(all_entities=all_entities,access_token=access_token))
+
+print(entities_with_relationships)
+
+
+
+
+
+    # for sheet_entities in atlas_entities_per_sheet:
+    #     atlas_entities = list(sheet_entities)
+
+    #     if len(atlas_entities) > 0:
+    #         try:
+    #             await get_ref_and_push(atlas_entities, with_referred_entities,access_token=access_token)
+    #         except ClientResponseError:
+    #             for i in atlas_entities:
+    #                 await get_ref_and_push([i], with_referred_entities,access_token=access_token)
+
 
 
 #How to make relationships
