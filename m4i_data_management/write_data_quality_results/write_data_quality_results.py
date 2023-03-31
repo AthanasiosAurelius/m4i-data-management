@@ -145,9 +145,13 @@ def send_data_to_kafka_broker(summary: DataFrame, compliant: DataFrame, non_comp
     broker = 'localhost:9092'
     topic = 'data_quality'
     data= pd.concat([summary,compliant,non_compliant])
+    
+
     message_producer = MessageProducer(broker,topic)
     data = data.to_dict()
-    data = json.dumps(data)
+    data = json.dumps(data,indent=4)
+    data=json.loads(data)
+    
     resp = message_producer.send_msg(data)
     return resp
 
