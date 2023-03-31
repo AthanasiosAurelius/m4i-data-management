@@ -52,8 +52,10 @@ atlas_dataset_quality = Quality(
     get_data=get_data_csv,
     get_metadata=atlas_get_metadata.atlas_get_metadata_dataset,
     get_rules=atlas_get_quality_rules.atlas_get_quality_rules_dataset,
-    propagate= write_data_quality_results.write_data_quality_results_csv_file,
-    #send_kafka=write_data_quality_results.send_data_to_kafka_broker
+    #make csv file of data quality results
+    #propagate= write_data_quality_results.write_data_quality_results_csv_file,
+    #send to kafka topic
+    propagate=write_data_quality_results.send_data_to_kafka_broker,
 )
 
  

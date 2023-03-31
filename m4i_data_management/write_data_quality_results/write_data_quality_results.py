@@ -130,14 +130,14 @@ def write_data_quality_results_csv_file(summary: DataFrame, compliant: DataFrame
     all_results= pd.concat([summary,compliant,non_compliant])
     all_results = pd.DataFrame(all_results).reset_index()
     save_results=all_results.to_csv(r"output.csv", index=False)
-    broker = 'localhost:9092'
-    topic = 'data_quality'
-    data= pd.concat([summary,compliant,non_compliant])
-    message_producer = MessageProducer(broker,topic)
-    data = data.to_dict()
+    # broker = 'localhost:9092'
+    # topic = 'data_quality'
+    # data= pd.concat([summary,compliant,non_compliant])
+    # message_producer = MessageProducer(broker,topic)
+    # data = data.to_dict()
 
-    data = json.dumps(data)
-    resp = message_producer.send_msg(data)
+    # data = json.dumps(data)
+    # resp = message_producer.send_msg(data)
     return save_results
 
 
