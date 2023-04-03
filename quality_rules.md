@@ -119,40 +119,43 @@ In the create_push_to_atlas.py a user can create a dataset, field and data quali
 
 # 1.First we define the attributes for each instance
 
-##Define the attributes for the dataset instance
-json_dataset={
-      "attributes": {
-        "name": "example",
-        "qualifiedName": "example100"
-      },
-      "typeName": "m4i_dataset"
-    }
+## Define the attributes for the dataset instance
+ .. code-block:: python
+        json_dataset={
+            "attributes": {
+                "name": "example",
+                "qualifiedName": "example100"
+            },
+            "typeName": "m4i_dataset"
+            }
 
 ## Define the attributes for the field instance
-json_field={
-      "attributes": {
-        "name": "field",
-        "qualifiedName": "example--field"
-      },
-      "typeName": "m4i_field",
-      "relationshipAttributes": {
-          "dataset": {
-              "guid": "<guid-of-json_dataset>",
-              "typeName": "m4i_dataset",
-              "relationshipType": "m4i_dataset_fields"
-          }
-      }
-}
+ .. code-block:: python
+        json_field={
+            "attributes": {
+                "name": "field",
+                "qualifiedName": "example--field"
+            },
+            "typeName": "m4i_field",
+            "relationshipAttributes": {
+                "dataset": {
+                    "guid": "<guid-of-json_dataset>",
+                    "typeName": "m4i_dataset",
+                    "relationshipType": "m4i_dataset_fields"
+                }
+            }
+        }
 
 ## Define the attributes for the data quality instance
-json_quality={
-      "attributes": {
-        "name": "field",
-        "qualifiedName": "example--quality",
-        "id": 1
-      },
-      "typeName": "m4i_data_quality"
-    }
+ .. code-block:: python
+        json_quality={
+            "attributes": {
+                "name": "field",
+                "qualifiedName": "example--quality",
+                "id": 1
+            },
+            "typeName": "m4i_data_quality"
+            }
 
 # 2. Create instances 
 
