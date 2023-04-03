@@ -1,4 +1,4 @@
-Here is a detailed guide on how to perform a data quality check of your data
+# How to perform a data quality check of your data
 
 Here is a link of the repositories you will need:
 
