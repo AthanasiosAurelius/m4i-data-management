@@ -112,7 +112,8 @@ These are the steps on how to do it:
 How to create entities and relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    In the create_push_to_atlas.py a user can create a dataset, field and data quality rule entity and push it to atlas. He can create a relationship between the field and dataset. I will explain how to do it with an example.
+
+In the create_push_to_atlas.py a user can create a dataset, field and data quality rule entity and push it to atlas. He can create a relationship between the field and dataset. I will explain how to do it with an example.
 
 1.) First we define the attributes for each instance
 
@@ -151,7 +152,7 @@ json_quality={
       "typeName": "m4i_data_quality"
     }
 
-2.) We create instances using the from_json method
+2) We create instances using the from_json method
 
 ## Create instances of BusinessDataset, BusinessField, and BusinessDataQuality using the from_json method
 json_str = json.dumps(json_dataset)
