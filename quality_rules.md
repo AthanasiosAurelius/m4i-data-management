@@ -87,9 +87,9 @@ Here is the exact configuration of the config and credentials, use this to run t
 
 
 
-    
 
-How to run data quality check
+
+# How to run data quality check
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -120,8 +120,12 @@ These are the steps on how to do it
 
 
 
- 
-How to create entities and relationships
+
+
+
+
+
+# How to create entities and relationships
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
