@@ -88,7 +88,7 @@ How to run data quality check
 
 Our tool checks the quality of your data. To use it, you need to provide a csv file with your data and the rules you want to apply to it. The rules are basically the type of checks you want to do on the attributes of your dataset. We store your data and rules on Atlas and use our tool to apply the rules to your data. We then calculate the quality score of your data based on the applied rules and provied a csv output with the results.
 
-These are the steps on how to do it:
+These are the steps on how to do it
     
     
 
@@ -110,16 +110,15 @@ These are the steps on how to do it:
 
 
 
-
-
- How to create entities and relationships
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+How to create entities and relationships
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 In the create_push_to_atlas.py a user can create a dataset, field and data quality rule entity and push it to atlas. He can create a relationship between the field and dataset. I will explain how to do it with an example.
 
 
-#1.First we define the attributes for each instance
+# 1.First we define the attributes for each instance
 
 ##Define the attributes for the dataset instance
 json_dataset={
@@ -156,7 +155,7 @@ json_quality={
       "typeName": "m4i_data_quality"
     }
 
-#2. We create instances using the from_json method
+# 2. We create instances using the from_json method
 
 ## Create instances of BusinessDataset, BusinessField, and BusinessDataQuality using the from_json method
 json_str = json.dumps(json_dataset)
@@ -179,7 +178,7 @@ field_attributes.datasets= [ObjectId(
 
 
 
-#3. Finally we push the entities to atlas. We use the create_entities function that can be found in the m4i_atlas_core. It is important to undertstand what are the inputs.
+# 3. Finally we push the entities to atlas. We use the create_entities function that can be found in the m4i_atlas_core. It is important to undertstand what are the inputs.
     create_entites(dataset_instance,referred_entites,accesss_token). The first input is the instance we created, then the referred entities, which here are non because we are just creating an entity with no relationships and finally the access token.
 
 ## Push the dataset instance to Atlas
