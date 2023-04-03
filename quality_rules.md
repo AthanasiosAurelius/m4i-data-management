@@ -174,13 +174,16 @@ json_str2 = json.dumps(json_quality)
 quality_instance = BusinessDataQuality.from_json(json_str2)
 
 ## Add relationship between the field and dataset instances
-field_attributes=field_instance.attributes
-field_attributes.datasets= [ObjectId(
-            type_name="m4i_dataset",
-            unique_attributes= M4IAttributes(
-            qualified_name="example100"
-        )
-        )]
+.. code-block:: python
+
+
+    field_attributes=field_instance.attributes
+    field_attributes.datasets= [ObjectId(
+                type_name="m4i_dataset",
+                unique_attributes= M4IAttributes(
+                qualified_name="example100"
+            )
+            )]
 
 
 
