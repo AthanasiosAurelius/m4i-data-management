@@ -53,33 +53,31 @@ Please remember to set the configuration parameters you want to use.
 
 
 # How to set up config and credentials file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the exact configuration of the config and credentials, use this to run the example.
 
-            .. code-block:: python
-
-                config = {
-                    "atlas_dataset_guid": "f686adca-00c4-4509-b73b-1c51ae597ebe",
-                    "dataset_quality_name": "example_name",
-                    "atlas": {
-                        "atlas.server.url": "https://aureliusdev.westeurope.cloudapp.azure.com/anwo/atlas/atlas",
-                    },
-                    "keycloak.server.url": "https://aureliusdev.westeurope.cloudapp.azure.com/anwo/auth/",
-                    "keycloak.client.id": "m4i_public",
-                    "keycloak.realm.name": "m4i",
-                    "keycloak.client.secret.key": ""
-                }
-
-                credentials = {
-                    "keycloak.credentials.username": "atlas",
-                    "keycloak.credentials.password": "",
-                    "atlas.server.url":"https://aureliusdev.westeurope.cloudapp.azure.com/anwo/atlas/atlas", 
-                    "atlas.credentials.username":"atlas",
-                    "atlas.credentials.password":""
-                }
 
 
+    config = {
+        "atlas_dataset_guid": "f686adca-00c4-4509-b73b-1c51ae597ebe",
+        "dataset_quality_name": "example_name",
+        "atlas": {
+            "atlas.server.url": "https://aureliusdev.westeurope.cloudapp.azure.com/anwo/atlas/atlas",
+        },
+        "keycloak.server.url": "https://aureliusdev.westeurope.cloudapp.azure.com/anwo/auth/",
+        "keycloak.client.id": "m4i_public",
+        "keycloak.realm.name": "m4i",
+        "keycloak.client.secret.key": ""
+    }
+
+    credentials = {
+        "keycloak.credentials.username": "atlas",
+        "keycloak.credentials.password": "",
+        "atlas.server.url":"https://aureliusdev.westeurope.cloudapp.azure.com/anwo/atlas/atlas", 
+        "atlas.credentials.username":"atlas",
+        "atlas.credentials.password":""
+    }
 
 
 
@@ -89,7 +87,9 @@ Here is the exact configuration of the config and credentials, use this to run t
 
 
 
-#How to run data quality check
+
+
+# How to run data quality check
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -233,6 +233,15 @@ field_attributes.datasets= [ObjectId(
                     print("This is not working")
             print(mutations_rule)
         push_rule = asyncio.run(create_in_atlas_rule(rule,access_token=access_token))
+        
+
+
+
+
+
+
+
+
 
 
 
