@@ -81,6 +81,14 @@ Here is the exact configuration of the config and credentials, use this to run t
         "atlas.credentials.password":""
     }
 
+
+
+
+
+
+
+    
+
 How to run data quality check
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -96,10 +104,12 @@ These are the steps on how to do it
     1. In the run_quality_rules.py we can now run our check. We have to provide a dataset so we can do a quality check.
        Fill in the path in the get_data_csv(). You will see it on line 63. Make a csv file with example data. Here is a simple example below.
 
-       .. image:: imgs/sample_data_pic.png
 
 
-    Just One Column named UID and provide a name.
+    Just One Column named UID and provide a name. Make an excel file.
+
+       UID
+       example_name
 
 
     
