@@ -120,7 +120,7 @@ In the create_push_to_atlas.py a user can create a dataset, field and data quali
 
 1.) First we define the attributes for each instance
 
-    # Define the attributes for the dataset instance
+##Define the attributes for the dataset instance
 json_dataset={
       "attributes": {
         "name": "example",
