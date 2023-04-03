@@ -125,7 +125,7 @@ json_dataset={
       "typeName": "m4i_dataset"
     }
 
-# Define the attributes for the field instance
+## Define the attributes for the field instance
 json_field={
       "attributes": {
         "name": "field",
@@ -141,7 +141,7 @@ json_field={
       }
 }
 
-# Define the attributes for the data quality instance
+## Define the attributes for the data quality instance
 json_quality={
       "attributes": {
         "name": "field",
@@ -153,7 +153,7 @@ json_quality={
 
 2.) We create instances using the from_json method
 
-# Create instances of BusinessDataset, BusinessField, and BusinessDataQuality using the from_json method
+## Create instances of BusinessDataset, BusinessField, and BusinessDataQuality using the from_json method
 json_str = json.dumps(json_dataset)
 dataset_instance = BusinessDataset.from_json(json_str)
 
@@ -163,7 +163,7 @@ field_instance= BusinessField.from_json(json_str1)
 json_str2 = json.dumps(json_quality)
 quality_instance = BusinessDataQuality.from_json(json_str2)
 
-# Add relationship between the field and dataset instances
+## Add relationship between the field and dataset instances
 field_attributes=field_instance.attributes
 field_attributes.datasets= [ObjectId(
             type_name="m4i_dataset",
@@ -172,22 +172,24 @@ field_attributes.datasets= [ObjectId(
         )
         )]
 
+
+
 3) Finally we push the entities to atlas. We use the create_entities function that can be found in the m4i_atlas_core. It is important to undertstand what are the inputs.
     create_entites(dataset_instance,referred_entites,accesss_token). The first input is the instance we created, then the referred entities, which here are non because we are just creating an entity with no relationships and finally the access token.
 
-# Push the dataset instance to Atlas
+## Push the dataset instance to Atlas
 async def create_in_atlas(dataset,access_token=access_token):
     mutations_dataset = await create_entities(dataset,referred_entities=None,access_token=access_token)
     print(mutations_dataset)
 push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_token))
 
-# Push the field instance to Atlas
+## Push the field instance to Atlas
 async def create_in_atlas_field(field,access_token=access_token):
     mutations_field = await create_entities(field,field,referred_entities=None,access_token=access_token)
     print(mutations_field)
 push_field = asyncio.run(create_in_atlas_field(field_instance,access_token=access_token))
 
-# Push the data quality instance to Atlas
+## Push the data quality instance to Atlas
 async def create_in_atlas_rule(rule,access_token=access_token):
     for i in range(100):
         try:
@@ -196,7 +198,7 @@ async def create_in_atlas_rule(rule,access_token=access_token):
         except:
             print("This is not working")
     print(mutations_rule)
-push_rule = asyncio.run(create_in_at
+push_rule = asyncio.run(create_in_atlas_rule(rule,access_token=access_token))
 
 
 
