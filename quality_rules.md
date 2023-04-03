@@ -82,7 +82,6 @@ Here is the exact configuration of the config and credentials, use this to run t
 
 
 # How to run data quality check
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -107,22 +106,6 @@ These are the steps on how to do it
 
     
     2. Finally we run our check in the run_quality_rules.py In debug mode run the 'asyncio.run(atlas_dataset_quality.run())' it's on line 59
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
