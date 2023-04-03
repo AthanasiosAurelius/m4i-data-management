@@ -53,7 +53,7 @@ Please remember to set the configuration parameters you want to use.
 
 
 # How to set up config and credentials file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Here is the exact configuration of the config and credentials, use this to run the example.
 
@@ -78,14 +78,6 @@ Here is the exact configuration of the config and credentials, use this to run t
         "atlas.credentials.username":"atlas",
         "atlas.credentials.password":""
     }
-
-
-
-
-
-
-
-
 
 
 
