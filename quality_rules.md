@@ -199,30 +199,30 @@ field_attributes.datasets= [ObjectId(
 
 ## Push the dataset instance to Atlas
      .. code-block:: python
-async def create_in_atlas(dataset,access_token=access_token):
-    mutations_dataset = await create_entities(dataset,referred_entities=None,access_token=access_token)
-    print(mutations_dataset)
-push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_token))
+        async def create_in_atlas(dataset,access_token=access_token):
+            mutations_dataset = await create_entities(dataset,referred_entities=None,access_token=access_token)
+            print(mutations_dataset)
+        push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_token))
 
 ## Push the field instance to Atlas
 
      .. code-block:: python
-async def create_in_atlas_field(field,access_token=access_token):
-    mutations_field = await create_entities(field,field,referred_entities=None,access_token=access_token)
-    print(mutations_field)
-push_field = asyncio.run(create_in_atlas_field(field_instance,access_token=access_token))
+        async def create_in_atlas_field(field,access_token=access_token):
+            mutations_field = await create_entities(field,field,referred_entities=None,access_token=access_token)
+            print(mutations_field)
+        push_field = asyncio.run(create_in_atlas_field(field_instance,access_token=access_token))
 
 ## Push the data quality instance to Atlas
      .. code-block:: python
-async def create_in_atlas_rule(rule,access_token=access_token):
-    for i in range(100):
-        try:
-            mutations_rule = await create_entities(rule,referred_entities=None,access_token=access_token)
-            break
-        except:
-            print("This is not working")
-    print(mutations_rule)
-push_rule = asyncio.run(create_in_atlas_rule(rule,access_token=access_token))
+        async def create_in_atlas_rule(rule,access_token=access_token):
+            for i in range(100):
+                try:
+                    mutations_rule = await create_entities(rule,referred_entities=None,access_token=access_token)
+                    break
+                except:
+                    print("This is not working")
+            print(mutations_rule)
+        push_rule = asyncio.run(create_in_atlas_rule(rule,access_token=access_token))
 
 
 
