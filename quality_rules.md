@@ -169,7 +169,7 @@ json_quality={
       "typeName": "m4i_data_quality"
     }
 
-# 2. We create instances using the from_json method
+# 2. Create instances 
 
 ## Create instances of BusinessDataset, BusinessField, and BusinessDataQuality using the from_json method
 json_str = json.dumps(json_dataset)
@@ -192,22 +192,28 @@ field_attributes.datasets= [ObjectId(
 
 
 
-# 3. Finally we push the entities to atlas. We use the create_entities function that can be found in the m4i_atlas_core. It is important to undertstand what are the inputs.
+# 3. Push the entities to atlas.
+
+ We use the create_entities function that can be found in the m4i_atlas_core. It is important to undertstand what are the inputs.
     create_entites(dataset_instance,referred_entites,accesss_token). The first input is the instance we created, then the referred entities, which here are non because we are just creating an entity with no relationships and finally the access token.
 
 ## Push the dataset instance to Atlas
+     .. code-block:: python
 async def create_in_atlas(dataset,access_token=access_token):
     mutations_dataset = await create_entities(dataset,referred_entities=None,access_token=access_token)
     print(mutations_dataset)
 push_to_atlas= asyncio.run(create_in_atlas(dataset_instance,access_token=access_token))
 
 ## Push the field instance to Atlas
+
+     .. code-block:: python
 async def create_in_atlas_field(field,access_token=access_token):
     mutations_field = await create_entities(field,field,referred_entities=None,access_token=access_token)
     print(mutations_field)
 push_field = asyncio.run(create_in_atlas_field(field_instance,access_token=access_token))
 
 ## Push the data quality instance to Atlas
+     .. code-block:: python
 async def create_in_atlas_rule(rule,access_token=access_token):
     for i in range(100):
         try:
