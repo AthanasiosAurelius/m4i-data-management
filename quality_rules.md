@@ -131,6 +131,7 @@ In the create_push_to_atlas.py a user can create a dataset, field and data quali
 
 ## Define the attributes for the field instance
  .. code-block:: python
+ 
         json_field={
             "attributes": {
                 "name": "field",
@@ -148,6 +149,8 @@ In the create_push_to_atlas.py a user can create a dataset, field and data quali
 
 ## Define the attributes for the data quality instance
  .. code-block:: python
+
+
         json_quality={
             "attributes": {
                 "name": "field",
