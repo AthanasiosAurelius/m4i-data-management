@@ -7,14 +7,13 @@ Here is a link of the repositories you will need:
      https://gitlab.com/m4i/m4i-data-management
 
 
-Clone all of these repositories
+
 
 # M4I Data Management
 
-This library contains all core functionality around data management for Models4Insight.
+This library contains all core functionality around data management.
 
 Installation 
-~~~~~~~~~~~~~
 
 Please ensure your `Python` environment is on version `3.7`. Some dependencies do not work with any later versions of `Python`.
 
