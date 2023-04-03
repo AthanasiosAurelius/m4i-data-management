@@ -2,15 +2,14 @@
 
 Here is a link of the repositories you will need:
 
-    1. https://github.com/aureliusenterprise/m4i_atlas_core
+     https://github.com/aureliusenterprise/m4i_atlas_core
 
-    2. https://gitlab.com/m4i/m4i-data-management
+     https://gitlab.com/m4i/m4i-data-management
 
 
 Clone all of these repositories
 
-M4I Data Management
-~~~~~~~~~~~~~~~~~~~~
+# M4I Data Management
 
 This library contains all core functionality around data management for Models4Insight.
 
