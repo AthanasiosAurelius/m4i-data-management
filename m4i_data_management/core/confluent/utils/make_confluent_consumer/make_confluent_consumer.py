@@ -1,6 +1,10 @@
 from confluent_kafka import Consumer
 
+#from m4i_atlas_core import ConfigStore
+#from m4i-atlas-core import Configstore
+
 from .....config import ConfigStore
+#from m4i_atlas_core import (connectors_types_def, data_dictionary_types_def, ConfigStore)
 
 config = ConfigStore.get_instance()
 

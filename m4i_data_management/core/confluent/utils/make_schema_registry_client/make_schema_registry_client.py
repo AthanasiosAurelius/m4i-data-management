@@ -2,6 +2,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 
 from .....config import ConfigStore
 
+
 config = ConfigStore.get_instance()
 
 

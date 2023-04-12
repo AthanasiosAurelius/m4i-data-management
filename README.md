@@ -8,6 +8,17 @@ Please ensure your `Python` environment is on version `3.7`. Some dependencies d
 
 To install `m4i-data-management` and all required dependencies to your active `Python` environment, please run the following command from the project root folder:
 
+1)Set up a virtual environment: Use this command in the root folder,
+```
+virtualenv --python "C:\\Python37\\python.exe" venv.
+```
+
+2) Then activate the virtual enviroment with this command: 
+```
+.\env\Scripts\activate  
+```
+
+3) Install the library
 ```
 pip install -e .
 ```
@@ -15,8 +26,17 @@ pip install -e .
 To install `m4i-data-management` including development dependencies, please run the following command instead:
 
 ```
+How do i install this, do i add a path?
 pip install -e .[dev]
+
 ```
+ Install m4i_data_management:
+ You can clone m4i_data_management from this link https://gitlab.com/m4i/m4i_data_management
+ Then you install with this command
+ ```
+ pip install {path to m4i_data_management}
+ ```
+
 
 Please make a copy of `config.sample.py` and `credentials.sample.py` and rename the files to `config.py` and `credentials.py` respectively.
 

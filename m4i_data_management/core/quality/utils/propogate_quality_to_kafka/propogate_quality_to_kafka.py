@@ -2,7 +2,7 @@ import logging
 from .... import make_confluent_producer
 import pandas as pd
 from pandas import DataFrame, notnull
-from m4i_data_management import ConfigStore
+from m4i_atlas_core import ConfigStore
 
 log = logging.getLogger(__name__)
 store = ConfigStore.get_instance()

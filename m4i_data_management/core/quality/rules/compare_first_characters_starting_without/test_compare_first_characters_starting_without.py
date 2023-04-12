@@ -1,8 +1,7 @@
 from numpy import NaN
 from pandas import DataFrame
 
-from .compare_first_characters_starting_without import \
-    compare_first_characters_starting_without
+from .compare_first_characters_starting_without import compare_first_characters_starting_without
 
 
 def test__compare_first_characters_starting_without_match_without():

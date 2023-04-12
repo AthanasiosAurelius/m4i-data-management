@@ -2,6 +2,7 @@ from elasticsearch import Elasticsearch
 
 from ....config import ConfigStore
 
+
 config = ConfigStore.get_instance()
 
 

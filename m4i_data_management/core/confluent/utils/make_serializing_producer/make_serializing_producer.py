@@ -1,6 +1,7 @@
 from confluent_kafka import SerializingProducer
 
 from .....config import ConfigStore
+
 from ..make_schema_registry_client import make_schema_registry_client
 from ..make_serializer import make_serializer
 

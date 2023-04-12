@@ -35,4 +35,11 @@ def bijacency(data: DataFrame, column_a: str, column_b: str) -> Series:
     # END check
 
     return data[[column_a, column_b]].apply(check, axis='columns')
+
 # END bijacency
+
+
+
+
+
+

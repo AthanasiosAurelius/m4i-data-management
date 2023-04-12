@@ -1,6 +1,6 @@
 import logging
 from typing import Callable
-
+import pandas as pd
 from pandas import DataFrame
 
 from .utils import annotate_results_with_metadata, evaluate_data_quality_rules
@@ -21,7 +21,8 @@ class Quality():
         get_data: Callable[[], DataFrame],
         get_rules: Callable[[], DataFrame],
         get_metadata: Callable[[], DataFrame],
-        propagate: Callable[[DataFrame, DataFrame, DataFrame], None],
+       #propagate: Callable[[DataFrame, DataFrame, DataFrame], None],
+       propagate: Callable[[DataFrame], None],
         name: str = "Quality"
     ):
         self.get_data = get_data
@@ -31,7 +32,7 @@ class Quality():
         self.propagate = propagate
     # END __init__
 
-    def run(self):
+    async def run(self):
         """
         Runs the quality check once and applies the following steps:
 
@@ -49,7 +50,7 @@ class Quality():
 
         log.info(f"Retrieved {len(data.index)} records")
 
-        rules = self.get_rules()
+        rules = await self.get_rules()
 
         log.info(f"Retrieved {len(rules.index)} data quality rules")
 
@@ -62,16 +63,29 @@ class Quality():
             f"Evaluated {len(summary.index)} data quality rules; found {len(compliant.index)} compliant rows and {len(non_compliant.index)} non-compliant rows"
         )
 
-        metadata = self.get_metadata()
+        metadata = await self.get_metadata()
 
         log.info(
             f"Retrieved {len(metadata.index)} rows of metadata from the data dictionary"
         )
 
-        summary = annotate_results_with_metadata(summary, metadata)
-        compliant = annotate_results_with_metadata(compliant, metadata)
+        summary =  annotate_results_with_metadata(summary, metadata)
+       # print(summary)
+        compliant =  annotate_results_with_metadata(compliant, metadata)
+       # print(compliant)
         non_compliant = annotate_results_with_metadata(non_compliant, metadata)
+        #print(non_compliant)
 
+        # all_results= pd.concat([summary,compliant,non_compliant])
+        
+        # all_results = pd.DataFrame(all_results)
+        
+       #Made csv ouput of results.          
+
+        #save_results=all_results.to_csv(r"C:\Users\Thana\OneDrive\Desktop\results\output.csv", index=False)
+        
+        # print(all_results)
+        # #kafka part ,I commented out
         log.info(
             f"Annotated {len(summary.index) + len(compliant.index) + len(non_compliant.index)} results with metadata from the data dictionary"
         )
